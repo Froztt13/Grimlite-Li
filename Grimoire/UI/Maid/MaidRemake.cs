@@ -244,9 +244,12 @@ namespace Grimoire.UI.Maid
 
                             // do attack with skills
                             if (Player.HasTarget)
-                            {
-                                //For class with some aura detection or Ultragramiel boss fight
-                                await SpecialCombo();
+							{
+								//general loop taunt
+								DoLoopTaunt();
+
+								//For class with some aura detection
+								await SpecialCombo();
                                 if (tauntTask == null)
                                     taunt();
                                 // force, to ensure a skill is REALLY executed 
@@ -316,9 +319,24 @@ namespace Grimoire.UI.Maid
             {
                 stopMaid();
             }
-        }
+		}
 
-        private void useSkill(string skillIndex)
+		private void DoLoopTaunt()
+		{
+			// ultra gramiel
+			if (Player.Map == "ultragramiel")
+			{
+				if (World.IsMonsterAvailable("Grace Crystal")) return;
+				if (Player.GetAuras(false, "Focus") < 1 &&
+					Player.GetAuras(true, "Vendetta") < 1 &&
+					Player.SkillAvailable("5") == 0)
+				{
+					Player.UseSkill("5");
+				}
+			}
+		}
+
+		private void useSkill(string skillIndex)
         {
             if (isUsingCSH())
             {
@@ -459,8 +477,9 @@ namespace Grimoire.UI.Maid
                 }
             }
 
+            // DOESNT WORK PROPERLY
             // ultra gramiel
-            if (Player.Map == "ultragramiel")
+            /*if (Player.Map == "ultragramiel")
             {
                 if (World.IsMonsterAvailable("Grace Crystal"))
                     return;
@@ -472,7 +491,7 @@ namespace Grimoire.UI.Maid
                 {
                     ResetToken(false);
                 }
-            }
+            }*/
         }
         private Task tauntTask = null;
         private CancellationTokenSource cts;
