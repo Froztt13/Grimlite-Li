@@ -182,13 +182,11 @@ namespace Grimoire.UI
 			_defaultControlText = JsonConvert.DeserializeObject<Dictionary<string, string>>(Resources.defaulttext, _serializerSettings);
 			OptionsManager.StateChanged += OnOptionsStateChanged;
 			Config c = Config.Load(Application.StartupPath + "\\config.cfg");
-			string font = c.Get("font");
-			//float fontSize = float.Parse(Config.Load(Application.StartupPath + "\\config.cfg").Get("fontSize") ?? "8.25", System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
-			if (font != null)
-				this.Font = new Font(font, 8.25f, FontStyle.Regular, GraphicsUnit.Point, 0);
-			lstCommands.ItemHeight = int.Parse(c.Get("CommandsSize") ?? "60");
-			lstCommands.Font = new Font(font, lstCommands.ItemHeight / 4 - (float)6.5, FontStyle.Regular, GraphicsUnit.Point, 0);
-			lstCommands.ItemHeight = lstCommands.ItemHeight / 4;
+			string fontName = c.Get("font") ?? "Microsoft Sans Serif";
+			int finalItemHeight = int.Parse(c.Get("CommandsSize") ?? "20");
+			float finalFontSize = (float)finalItemHeight * 0.4f;
+			lstCommands.ItemHeight = finalItemHeight;
+			lstCommands.Font = new Font(fontName, finalFontSize, FontStyle.Regular, GraphicsUnit.Point, 0);
 		}
 
 		private void TextboxEnter(object sender, EventArgs e)

@@ -293,9 +293,10 @@ namespace Grimoire.UI
 			this.lstKeys.FormattingEnabled = true;
 			this.lstKeys.HorizontalScrollbar = true;
 			this.lstKeys.ItemHeight = 18;
-			this.lstKeys.Location = new System.Drawing.Point(12, 39);
+			this.lstKeys.Location = new System.Drawing.Point(18, 60);
+			this.lstKeys.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.lstKeys.Name = "lstKeys";
-			this.lstKeys.Size = new System.Drawing.Size(281, 200);
+			this.lstKeys.Size = new System.Drawing.Size(420, 290);
 			this.lstKeys.TabIndex = 28;
 			// 
 			// btnSave
@@ -303,9 +304,10 @@ namespace Grimoire.UI
 			this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnSave.Checked = false;
-			this.btnSave.Location = new System.Drawing.Point(13, 271);
+			this.btnSave.Location = new System.Drawing.Point(20, 417);
+			this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.btnSave.Name = "btnSave";
-			this.btnSave.Size = new System.Drawing.Size(280, 23);
+			this.btnSave.Size = new System.Drawing.Size(420, 35);
 			this.btnSave.TabIndex = 33;
 			this.btnSave.Text = "Save";
 			this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -313,6 +315,7 @@ namespace Grimoire.UI
 			// cbKeys
 			// 
 			this.cbKeys.FormattingEnabled = true;
+			this.cbKeys.ItemHeight = 27;
 			this.cbKeys.Items.AddRange(new object[] {
             "Escape",
             "Left",
@@ -370,15 +373,17 @@ namespace Grimoire.UI
             "Alt",
             "Tab",
             "Shift"});
-			this.cbKeys.Location = new System.Drawing.Point(12, 12);
+			this.cbKeys.Location = new System.Drawing.Point(18, 18);
+			this.cbKeys.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cbKeys.MaxDropDownItems = 20;
 			this.cbKeys.Name = "cbKeys";
-			this.cbKeys.Size = new System.Drawing.Size(106, 21);
+			this.cbKeys.Size = new System.Drawing.Size(157, 33);
 			this.cbKeys.TabIndex = 35;
 			// 
 			// cbActions
 			// 
 			this.cbActions.FormattingEnabled = true;
+			this.cbActions.ItemHeight = 27;
 			this.cbActions.Items.AddRange(new object[] {
             "Start/Stop Bot",
             "Show Bot",
@@ -400,18 +405,20 @@ namespace Grimoire.UI
             "Load Hair shop",
             "Load Armor Customizer",
             "Toggle Options"});
-			this.cbActions.Location = new System.Drawing.Point(124, 12);
+			this.cbActions.Location = new System.Drawing.Point(186, 18);
+			this.cbActions.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cbActions.MaxDropDownItems = 20;
 			this.cbActions.Name = "cbActions";
-			this.cbActions.Size = new System.Drawing.Size(169, 21);
+			this.cbActions.Size = new System.Drawing.Size(252, 33);
 			this.cbActions.TabIndex = 36;
 			// 
 			// btnAdd
 			// 
 			this.btnAdd.Checked = false;
-			this.btnAdd.Location = new System.Drawing.Point(13, 244);
+			this.btnAdd.Location = new System.Drawing.Point(20, 375);
+			this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.btnAdd.Name = "btnAdd";
-			this.btnAdd.Size = new System.Drawing.Size(138, 21);
+			this.btnAdd.Size = new System.Drawing.Size(207, 33);
 			this.btnAdd.TabIndex = 39;
 			this.btnAdd.Text = "Add";
 			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -419,18 +426,19 @@ namespace Grimoire.UI
 			// btnRemove
 			// 
 			this.btnRemove.Checked = false;
-			this.btnRemove.Location = new System.Drawing.Point(158, 244);
+			this.btnRemove.Location = new System.Drawing.Point(237, 375);
+			this.btnRemove.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.btnRemove.Name = "btnRemove";
-			this.btnRemove.Size = new System.Drawing.Size(135, 21);
+			this.btnRemove.Size = new System.Drawing.Size(202, 33);
 			this.btnRemove.TabIndex = 40;
 			this.btnRemove.Text = "Remove";
 			this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
 			// 
 			// Hotkeys
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(303, 306);
+			this.ClientSize = new System.Drawing.Size(454, 471);
 			this.Controls.Add(this.btnAdd);
 			this.Controls.Add(this.btnRemove);
 			this.Controls.Add(this.cbKeys);
@@ -439,6 +447,7 @@ namespace Grimoire.UI
 			this.Controls.Add(this.lstKeys);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "Hotkeys";

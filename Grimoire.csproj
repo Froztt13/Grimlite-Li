@@ -101,6 +101,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>

@@ -33,14 +33,14 @@ namespace Grimoire.UI
 		private DarkButton btnCarnage;
 		private DarkButton AweTravel;
 		private DarkGroupBox aweGroup;
-		private RadioButton aweWizard;
-		private RadioButton aweLucky;
-		private Panel panel1;
-		private RadioButton aweThief;
-		private RadioButton aweHybrid;
-		private RadioButton aweHealer;
+		private DarkRadioButton aweWizard;
+		private DarkRadioButton aweLucky;
+		private DarkPanel panel1;
+		private DarkRadioButton aweThief;
+		private DarkRadioButton aweHybrid;
+		private DarkRadioButton aweHealer;
 		private TableLayoutPanel tableLayoutPanel1;
-		private RadioButton aweFigther;
+		private DarkRadioButton aweFigther;
 		private DarkButton btnKlunk;
 		private DarkButton btnDoomvaultB;
 		private DarkGroupBox darkGroupBox1;
@@ -519,7 +519,6 @@ namespace Grimoire.UI
 			this.aweLucky.TabIndex = 9;
 			this.aweLucky.TabStop = true;
 			this.aweLucky.Text = "Lucky";
-			this.aweLucky.UseVisualStyleBackColor = true;
 			// 
 			// aweHybrid
 			// 
@@ -530,7 +529,6 @@ namespace Grimoire.UI
 			this.aweHybrid.Size = new System.Drawing.Size(79, 24);
 			this.aweHybrid.TabIndex = 14;
 			this.aweHybrid.Text = "Hybrid";
-			this.aweHybrid.UseVisualStyleBackColor = true;
 			// 
 			// aweHealer
 			// 
@@ -541,7 +539,6 @@ namespace Grimoire.UI
 			this.aweHealer.Size = new System.Drawing.Size(81, 24);
 			this.aweHealer.TabIndex = 15;
 			this.aweHealer.Text = "Healer";
-			this.aweHealer.UseVisualStyleBackColor = true;
 			// 
 			// aweFigther
 			// 
@@ -552,7 +549,6 @@ namespace Grimoire.UI
 			this.aweFigther.Size = new System.Drawing.Size(84, 24);
 			this.aweFigther.TabIndex = 11;
 			this.aweFigther.Text = "Fighter";
-			this.aweFigther.UseVisualStyleBackColor = true;
 			// 
 			// aweThief
 			// 
@@ -563,7 +559,6 @@ namespace Grimoire.UI
 			this.aweThief.Size = new System.Drawing.Size(69, 24);
 			this.aweThief.TabIndex = 13;
 			this.aweThief.Text = "Thief";
-			this.aweThief.UseVisualStyleBackColor = true;
 			// 
 			// aweWizard
 			// 
@@ -574,7 +569,6 @@ namespace Grimoire.UI
 			this.aweWizard.Size = new System.Drawing.Size(83, 24);
 			this.aweWizard.TabIndex = 10;
 			this.aweWizard.Text = "Wizard";
-			this.aweWizard.UseVisualStyleBackColor = true;
 			// 
 			// btnDoomvaultB
 			// 
@@ -690,13 +684,16 @@ namespace Grimoire.UI
 			this.tbGeneratedPacket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.tbGeneratedPacket.Location = new System.Drawing.Point(14, 137);
 			this.tbGeneratedPacket.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.tbGeneratedPacket.Multiline = true;
 			this.tbGeneratedPacket.Name = "tbGeneratedPacket";
 			this.tbGeneratedPacket.ReadOnly = true;
-			this.tbGeneratedPacket.Size = new System.Drawing.Size(112, 26);
+			this.tbGeneratedPacket.Size = new System.Drawing.Size(112, 31);
 			this.tbGeneratedPacket.TabIndex = 19;
+			this.tbGeneratedPacket.WordWrap = false;
 			// 
 			// numStoryQuestId
 			// 
+			this.numStoryQuestId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
 			this.numStoryQuestId.IncrementAlternate = new decimal(new int[] {
             10,
             0,
@@ -711,7 +708,7 @@ namespace Grimoire.UI
             0,
             0});
 			this.numStoryQuestId.Name = "numStoryQuestId";
-			this.numStoryQuestId.Size = new System.Drawing.Size(112, 26);
+			this.numStoryQuestId.Size = new System.Drawing.Size(112, 28);
 			this.numStoryQuestId.TabIndex = 9;
 			// 
 			// btnUnlockMap

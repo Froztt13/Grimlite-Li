@@ -79,8 +79,6 @@ namespace Grimoire.UI.Maid
             cmbUltraBoss.SelectedIndex = 0;
             this.Text = $"Maid Remake";
 
-			Flash.FlashCall2 += AntiCounterHandler;
-
 			ToolTip toolTip = new ToolTip();
             toolTip.SetToolTip(this.cbPartyCmd,
                 "[Auto accept any party invitation when checked]" +
@@ -135,7 +133,16 @@ namespace Grimoire.UI.Maid
                 if (cbSpecialAnims.Checked)
                     Flash.FlashCall2 += AnimsMsgHandler;
 
-                if (!cbUnfollow.Checked && Player.IsLoggedIn && !World.IsMapLoading && isPlayerInMyRoom && !isPlayerInMyCell)
+                if (cbAntiCounter.Checked)
+					Flash.FlashCall2 += AntiCounterHandler;
+
+                if (cbPartyCmd.Checked)
+                {
+					Proxy.Instance.RegisterHandler(PartyInvitationHandler);
+					Proxy.Instance.RegisterHandler(PartyChatHandler);
+				}
+
+				if (!cbUnfollow.Checked && Player.IsLoggedIn && !World.IsMapLoading && isPlayerInMyRoom && !isPlayerInMyCell)
                     Player.GoToPlayer(targetUsername);
 
                 if (cbAttackPriority.Checked)
