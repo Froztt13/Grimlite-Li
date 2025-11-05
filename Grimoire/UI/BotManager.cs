@@ -183,8 +183,8 @@ namespace Grimoire.UI
 			OptionsManager.StateChanged += OnOptionsStateChanged;
 			Config c = Config.Load(Application.StartupPath + "\\config.cfg");
 			string fontName = c.Get("font") ?? "Microsoft Sans Serif";
-			int finalItemHeight = int.Parse(c.Get("CommandsSize") ?? "20");
-			float finalFontSize = (float)finalItemHeight * 0.4f;
+			int finalItemHeight = int.Parse(c.Get("CommandsSize") ?? "21");
+			float finalFontSize = (float)finalItemHeight * 0.38f;
 			lstCommands.ItemHeight = finalItemHeight;
 			lstCommands.Font = new Font(fontName, finalFontSize, FontStyle.Regular, GraphicsUnit.Point, 0);
 		}
@@ -2405,7 +2405,7 @@ namespace Grimoire.UI
 			}
 			else
 			{
-				this.ClientSize = new Size(p1w + 580, ClientSize.Height);
+				this.ClientSize = new Size(p1w + 880, ClientSize.Height);
 				splitContainer2.Panel2Collapsed = false;
 				mainTabControl.Visible = true;
 			}

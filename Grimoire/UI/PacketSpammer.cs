@@ -227,27 +227,32 @@ namespace Grimoire.UI
 			this.lstPackets.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
 			this.lstPackets.FormattingEnabled = true;
 			this.lstPackets.ItemHeight = 18;
-			this.lstPackets.Location = new System.Drawing.Point(12, 12);
+			this.lstPackets.Location = new System.Drawing.Point(18, 18);
+			this.lstPackets.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.lstPackets.Name = "lstPackets";
-			this.lstPackets.Size = new System.Drawing.Size(325, 110);
+			this.lstPackets.Size = new System.Drawing.Size(486, 164);
 			this.lstPackets.TabIndex = 0;
 			// 
 			// txtPacket
 			// 
 			this.txtPacket.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.txtPacket.Location = new System.Drawing.Point(12, 125);
+			this.txtPacket.Location = new System.Drawing.Point(18, 186);
+			this.txtPacket.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.txtPacket.Multiline = true;
 			this.txtPacket.Name = "txtPacket";
-			this.txtPacket.Size = new System.Drawing.Size(325, 20);
+			this.txtPacket.Size = new System.Drawing.Size(486, 33);
 			this.txtPacket.TabIndex = 27;
+			this.txtPacket.WordWrap = false;
 			// 
 			// btnAdd
 			// 
 			this.btnAdd.Checked = false;
 			this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.btnAdd.Location = new System.Drawing.Point(245, 3);
+			this.btnAdd.Location = new System.Drawing.Point(367, 5);
+			this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.btnAdd.Name = "btnAdd";
-			this.btnAdd.Size = new System.Drawing.Size(76, 23);
+			this.btnAdd.Size = new System.Drawing.Size(115, 35);
 			this.btnAdd.TabIndex = 28;
 			this.btnAdd.Text = "Add";
 			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -256,9 +261,10 @@ namespace Grimoire.UI
 			// 
 			this.btnClear.Checked = false;
 			this.btnClear.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.btnClear.Location = new System.Drawing.Point(164, 3);
+			this.btnClear.Location = new System.Drawing.Point(246, 5);
+			this.btnClear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.btnClear.Name = "btnClear";
-			this.btnClear.Size = new System.Drawing.Size(75, 23);
+			this.btnClear.Size = new System.Drawing.Size(113, 35);
 			this.btnClear.TabIndex = 29;
 			this.btnClear.Text = "Clear";
 			this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
@@ -267,9 +273,10 @@ namespace Grimoire.UI
 			// 
 			this.btnLoad.Checked = false;
 			this.btnLoad.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.btnLoad.Location = new System.Drawing.Point(164, 32);
+			this.btnLoad.Location = new System.Drawing.Point(246, 50);
+			this.btnLoad.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.btnLoad.Name = "btnLoad";
-			this.btnLoad.Size = new System.Drawing.Size(75, 23);
+			this.btnLoad.Size = new System.Drawing.Size(113, 35);
 			this.btnLoad.TabIndex = 30;
 			this.btnLoad.Text = "Load";
 			this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
@@ -278,9 +285,10 @@ namespace Grimoire.UI
 			// 
 			this.btnSave.Checked = false;
 			this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.btnSave.Location = new System.Drawing.Point(245, 32);
+			this.btnSave.Location = new System.Drawing.Point(367, 50);
+			this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.btnSave.Name = "btnSave";
-			this.btnSave.Size = new System.Drawing.Size(76, 23);
+			this.btnSave.Size = new System.Drawing.Size(115, 35);
 			this.btnSave.TabIndex = 31;
 			this.btnSave.Text = "Save";
 			this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -289,9 +297,10 @@ namespace Grimoire.UI
 			// 
 			this.btnStart.Checked = false;
 			this.btnStart.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.btnStart.Location = new System.Drawing.Point(245, 61);
+			this.btnStart.Location = new System.Drawing.Point(367, 95);
+			this.btnStart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.btnStart.Name = "btnStart";
-			this.btnStart.Size = new System.Drawing.Size(76, 25);
+			this.btnStart.Size = new System.Drawing.Size(115, 37);
 			this.btnStart.TabIndex = 32;
 			this.btnStart.Text = "Start";
 			this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
@@ -300,9 +309,10 @@ namespace Grimoire.UI
 			// 
 			this.btnStop.Checked = false;
 			this.btnStop.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.btnStop.Location = new System.Drawing.Point(164, 61);
+			this.btnStop.Location = new System.Drawing.Point(246, 95);
+			this.btnStop.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.btnStop.Name = "btnStop";
-			this.btnStop.Size = new System.Drawing.Size(75, 25);
+			this.btnStop.Size = new System.Drawing.Size(113, 37);
 			this.btnStop.TabIndex = 33;
 			this.btnStop.Text = "Stop";
 			this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
@@ -315,8 +325,9 @@ namespace Grimoire.UI
             0,
             0,
             65536});
-			this.numDelay.Location = new System.Drawing.Point(3, 3);
+			this.numDelay.Location = new System.Drawing.Point(4, 5);
 			this.numDelay.LoopValues = false;
+			this.numDelay.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.numDelay.Maximum = new decimal(new int[] {
             61000,
             0,
@@ -328,7 +339,7 @@ namespace Grimoire.UI
             0,
             0});
 			this.numDelay.Name = "numDelay";
-			this.numDelay.Size = new System.Drawing.Size(81, 20);
+			this.numDelay.Size = new System.Drawing.Size(123, 26);
 			this.numDelay.TabIndex = 34;
 			this.numDelay.Value = new decimal(new int[] {
             1000,
@@ -340,9 +351,10 @@ namespace Grimoire.UI
 			// 
 			this.btnSend.Checked = false;
 			this.btnSend.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.btnSend.Location = new System.Drawing.Point(3, 61);
+			this.btnSend.Location = new System.Drawing.Point(4, 95);
+			this.btnSend.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.btnSend.Name = "btnSend";
-			this.btnSend.Size = new System.Drawing.Size(81, 25);
+			this.btnSend.Size = new System.Drawing.Size(123, 37);
 			this.btnSend.TabIndex = 35;
 			this.btnSend.Text = "Send once";
 			this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
@@ -351,9 +363,10 @@ namespace Grimoire.UI
 			// 
 			this.btnRemove.Checked = false;
 			this.btnRemove.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.btnRemove.Location = new System.Drawing.Point(90, 3);
+			this.btnRemove.Location = new System.Drawing.Point(135, 5);
+			this.btnRemove.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.btnRemove.Name = "btnRemove";
-			this.btnRemove.Size = new System.Drawing.Size(68, 23);
+			this.btnRemove.Size = new System.Drawing.Size(103, 35);
 			this.btnRemove.TabIndex = 36;
 			this.btnRemove.Text = "Remove";
 			this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
@@ -376,24 +389,26 @@ namespace Grimoire.UI
 			this.tableLayoutPanel1.Controls.Add(this.btnStart, 3, 2);
 			this.tableLayoutPanel1.Controls.Add(this.btnStop, 2, 2);
 			this.tableLayoutPanel1.Controls.Add(this.btnSend, 0, 2);
-			this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 151);
+			this.tableLayoutPanel1.Location = new System.Drawing.Point(18, 223);
+			this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			this.tableLayoutPanel1.RowCount = 3;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(324, 89);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(486, 137);
 			this.tableLayoutPanel1.TabIndex = 37;
 			// 
 			// PacketSpammer
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(348, 242);
+			this.ClientSize = new System.Drawing.Size(522, 372);
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Controls.Add(this.txtPacket);
 			this.Controls.Add(this.lstPackets);
 			this.Icon = global::Properties.Resources.GrimoireIcon;
+			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "PacketSpammer";
