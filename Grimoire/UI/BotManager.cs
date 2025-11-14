@@ -187,6 +187,11 @@ namespace Grimoire.UI
 			float finalFontSize = (float)finalItemHeight * 0.38f;
 			lstCommands.ItemHeight = finalItemHeight;
 			lstCommands.Font = new Font(fontName, finalFontSize, FontStyle.Regular, GraphicsUnit.Point, 0);
+
+			if (chkAntiCounter.Checked)
+			{
+				Proxy.Instance.ReceivedFromServer += CapturePlayerAura;
+			}
 		}
 
 		private void TextboxEnter(object sender, EventArgs e)
@@ -3162,8 +3167,8 @@ namespace Grimoire.UI
 					Console.WriteLine("Counter Attack: active");
 				}
 
-				//"cmd":"aura--","aura":{"nam":"Counter Attack"
-				if (msg.Contains("\"cmd\":\"aura--\",\"aura\":{\"nam\":\"Counter Attack\""))
+				//{"t":"xt","b":{"r":-1,"o":{"cmd":"ct","a":[{"cmd":"aura-","aura":{"nam":"Counter Attack"},"tInf":"m:7"}]}}}
+				if (msg.Contains("\"cmd\":\"aura-\",\"aura\":{\"nam\":\"Counter Attack\""))
 				{
 					Console.WriteLine("Counter Attack: fades");
 					ActiveBotEngine.Configuration.SkipAttack = false;
