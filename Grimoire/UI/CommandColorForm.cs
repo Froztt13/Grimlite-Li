@@ -176,13 +176,26 @@ namespace Grimoire.UI
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            try
-            {
-                BotManager.Instance.lstCommands.ItemHeight = trackBar1.Value / 4;
-                BotManager.Instance.lstCommands.Font = new Font(BotManager.Instance.lstCommands.Font.FontFamily, BotManager.Instance.lstCommands.ItemHeight - (float)6.5, FontStyle.Regular);
-            }
-            catch { }
-        }
+			try
+			{
+				int newItemHeight = trackBar1.Value / 4;
+				float newFontSize = (float)newItemHeight * 0.4f;
+				if (newFontSize < 1.0f)
+				{
+					newFontSize = 1.0f;
+				}
+				BotManager.Instance.lstCommands.ItemHeight = newItemHeight;
+				BotManager.Instance.lstCommands.Font = new Font(
+					BotManager.Instance.lstCommands.Font.FontFamily,
+					newFontSize,
+					FontStyle.Regular
+				);
+			}
+			catch (Exception ex)
+			{
+				System.Diagnostics.Debug.WriteLine("Error resizing listbox: " + ex.Message);
+			}
+		}
 
         private void btnSave_Click(object sender, EventArgs e)
         {

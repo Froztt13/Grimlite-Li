@@ -185,9 +185,10 @@ namespace Grimoire.UI
 			this.txtSend.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.txtSend.ForeColor = System.Drawing.Color.Gainsboro;
 			this.txtSend.Location = new System.Drawing.Point(0, 0);
+			this.txtSend.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.txtSend.Name = "txtSend";
 			this.txtSend.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-			this.txtSend.Size = new System.Drawing.Size(540, 126);
+			this.txtSend.Size = new System.Drawing.Size(810, 193);
 			this.txtSend.TabIndex = 0;
 			this.txtSend.Text = "";
 			// 
@@ -197,9 +198,10 @@ namespace Grimoire.UI
 			this.txtReceive.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.txtReceive.ForeColor = System.Drawing.Color.Gainsboro;
 			this.txtReceive.Location = new System.Drawing.Point(0, 0);
+			this.txtReceive.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.txtReceive.Name = "txtReceive";
 			this.txtReceive.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-			this.txtReceive.Size = new System.Drawing.Size(540, 274);
+			this.txtReceive.Size = new System.Drawing.Size(810, 423);
 			this.txtReceive.TabIndex = 1;
 			this.txtReceive.Text = "";
 			// 
@@ -208,7 +210,8 @@ namespace Grimoire.UI
 			this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.splitContainer1.Location = new System.Drawing.Point(12, 41);
+			this.splitContainer1.Location = new System.Drawing.Point(18, 63);
+			this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.splitContainer1.Name = "splitContainer1";
 			this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
 			// 
@@ -219,18 +222,22 @@ namespace Grimoire.UI
 			// splitContainer1.Panel2
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.txtReceive);
-			this.splitContainer1.Size = new System.Drawing.Size(540, 404);
-			this.splitContainer1.SplitterDistance = 126;
+			this.splitContainer1.Size = new System.Drawing.Size(810, 622);
+			this.splitContainer1.SplitterDistance = 193;
+			this.splitContainer1.SplitterWidth = 6;
 			this.splitContainer1.TabIndex = 7;
 			// 
 			// tbFilter
 			// 
 			this.tbFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tbFilter.Location = new System.Drawing.Point(88, 458);
+			this.tbFilter.Location = new System.Drawing.Point(132, 703);
+			this.tbFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.tbFilter.Multiline = true;
 			this.tbFilter.Name = "tbFilter";
-			this.tbFilter.Size = new System.Drawing.Size(464, 20);
+			this.tbFilter.Size = new System.Drawing.Size(695, 33);
 			this.tbFilter.TabIndex = 27;
+			this.tbFilter.WordWrap = false;
 			// 
 			// label1
 			// 
@@ -238,9 +245,10 @@ namespace Grimoire.UI
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.label1.AutoSize = true;
 			this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-			this.label1.Location = new System.Drawing.Point(16, 460);
+			this.label1.Location = new System.Drawing.Point(24, 708);
+			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(63, 13);
+			this.label1.Size = new System.Drawing.Size(94, 20);
 			this.label1.TabIndex = 28;
 			this.label1.Text = "Filter by text";
 			// 
@@ -248,9 +256,10 @@ namespace Grimoire.UI
 			// 
 			this.btnToServer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnToServer.Checked = false;
-			this.btnToServer.Location = new System.Drawing.Point(458, 9);
+			this.btnToServer.Location = new System.Drawing.Point(687, 14);
+			this.btnToServer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.btnToServer.Name = "btnToServer";
-			this.btnToServer.Size = new System.Drawing.Size(96, 23);
+			this.btnToServer.Size = new System.Drawing.Size(140, 35);
 			this.btnToServer.TabIndex = 3;
 			this.btnToServer.Text = "Send to server";
 			this.btnToServer.Click += new System.EventHandler(this.btnToServer_Click);
@@ -259,9 +268,10 @@ namespace Grimoire.UI
 			// 
 			this.btnToClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnToClient.Checked = false;
-			this.btnToClient.Location = new System.Drawing.Point(356, 9);
+			this.btnToClient.Location = new System.Drawing.Point(540, 14);
+			this.btnToClient.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.btnToClient.Name = "btnToClient";
-			this.btnToClient.Size = new System.Drawing.Size(96, 23);
+			this.btnToClient.Size = new System.Drawing.Size(144, 35);
 			this.btnToClient.TabIndex = 6;
 			this.btnToClient.Text = "Send to client";
 			this.btnToClient.Click += new System.EventHandler(this.btnToClient_Click);
@@ -270,9 +280,10 @@ namespace Grimoire.UI
 			// 
 			this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnClear.Checked = false;
-			this.btnClear.Location = new System.Drawing.Point(279, 9);
+			this.btnClear.Location = new System.Drawing.Point(433, 14);
+			this.btnClear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.btnClear.Name = "btnClear";
-			this.btnClear.Size = new System.Drawing.Size(70, 23);
+			this.btnClear.Size = new System.Drawing.Size(105, 35);
 			this.btnClear.TabIndex = 7;
 			this.btnClear.Text = "Clear";
 			this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
@@ -280,9 +291,10 @@ namespace Grimoire.UI
 			// chkFromClient
 			// 
 			this.chkFromClient.AutoSize = true;
-			this.chkFromClient.Location = new System.Drawing.Point(147, 12);
+			this.chkFromClient.Location = new System.Drawing.Point(220, 18);
+			this.chkFromClient.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.chkFromClient.Name = "chkFromClient";
-			this.chkFromClient.Size = new System.Drawing.Size(114, 17);
+			this.chkFromClient.Size = new System.Drawing.Size(169, 24);
 			this.chkFromClient.TabIndex = 4;
 			this.chkFromClient.Text = "Capture from client";
 			this.chkFromClient.CheckedChanged += new System.EventHandler(this.chkFromClient_CheckedChanged);
@@ -290,18 +302,19 @@ namespace Grimoire.UI
 			// chkFromServer
 			// 
 			this.chkFromServer.AutoSize = true;
-			this.chkFromServer.Location = new System.Drawing.Point(12, 12);
+			this.chkFromServer.Location = new System.Drawing.Point(18, 18);
+			this.chkFromServer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.chkFromServer.Name = "chkFromServer";
-			this.chkFromServer.Size = new System.Drawing.Size(118, 17);
+			this.chkFromServer.Size = new System.Drawing.Size(175, 24);
 			this.chkFromServer.TabIndex = 5;
 			this.chkFromServer.Text = "Capture from server";
 			this.chkFromServer.CheckedChanged += new System.EventHandler(this.chkFromServer_CheckedChanged);
 			// 
 			// PacketTamperer
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(561, 492);
+			this.ClientSize = new System.Drawing.Size(842, 757);
 			this.Controls.Add(this.btnToServer);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.btnToClient);
@@ -311,6 +324,7 @@ namespace Grimoire.UI
 			this.Controls.Add(this.chkFromClient);
 			this.Controls.Add(this.chkFromServer);
 			this.Icon = global::Properties.Resources.GrimoireIcon;
+			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.Name = "PacketTamperer";
 			this.Text = "Packet Tamperer";
 			this.TopMost = true;

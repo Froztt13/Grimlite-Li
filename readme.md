@@ -1,4 +1,4 @@
-# GrimLite Ligma 1.8
-## 14-11-2025
+# GrimLite Ligma 2.0
+## 15-11-2025
 
-Too many improvements to be listed (check the commit history)
+Force scale UI to 150% for FHD monitor

@@ -72,10 +72,12 @@ namespace Grimoire.UI
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tbGameFunction.Location = new System.Drawing.Point(10, 72);
 			this.tbGameFunction.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.tbGameFunction.Multiline = true;
 			this.tbGameFunction.Name = "tbGameFunction";
-			this.tbGameFunction.Size = new System.Drawing.Size(352, 26);
+			this.tbGameFunction.Size = new System.Drawing.Size(352, 33);
 			this.tbGameFunction.TabIndex = 171;
 			this.tbGameFunction.Text = "world";
+			this.tbGameFunction.WordWrap = false;
 			// 
 			// tbArgs
 			// 
@@ -83,10 +85,12 @@ namespace Grimoire.UI
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tbArgs.Location = new System.Drawing.Point(10, 132);
 			this.tbArgs.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.tbArgs.Multiline = true;
 			this.tbArgs.Name = "tbArgs";
-			this.tbArgs.Size = new System.Drawing.Size(320, 26);
+			this.tbArgs.Size = new System.Drawing.Size(320, 33);
 			this.tbArgs.TabIndex = 173;
 			this.tbArgs.Text = "arg1,arg2...";
+			this.tbArgs.WordWrap = false;
 			// 
 			// darkLabel1
 			// 
@@ -105,7 +109,7 @@ namespace Grimoire.UI
 			this.chkArgs.AutoSize = true;
 			this.chkArgs.Checked = true;
 			this.chkArgs.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.chkArgs.Location = new System.Drawing.Point(340, 135);
+			this.chkArgs.Location = new System.Drawing.Point(340, 139);
 			this.chkArgs.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.chkArgs.Name = "chkArgs";
 			this.chkArgs.Size = new System.Drawing.Size(22, 21);
@@ -124,6 +128,7 @@ namespace Grimoire.UI
 			this.tbLogs.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.tbLogs.Size = new System.Drawing.Size(352, 273);
 			this.tbLogs.TabIndex = 175;
+			this.tbLogs.WordWrap = false;
 			// 
 			// radGrimoire
 			// 
