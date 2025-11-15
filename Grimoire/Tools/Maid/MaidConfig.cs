@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,6 +37,12 @@ namespace Grimoire.Tools.Maid
 
 		public int SafeSkillHP;
 
+		public bool SafeSkill2;
+
+		public string SafeSkillList2;
+
+		public int? SafeSkillHP2;
+
 		public bool BuffStopAttack;
 
 		public string BuffStopAttackList;
@@ -43,6 +50,8 @@ namespace Grimoire.Tools.Maid
 		public bool AttackPriority;
 
 		public string AttackPriorityMonster;
+
+		public bool PartyCmd;
 
 		public bool CopyWalk;
 

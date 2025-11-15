@@ -360,7 +360,7 @@
 			// cbStopAttack
 			// 
 			this.cbStopAttack.AutoSize = true;
-			this.cbStopAttack.Location = new System.Drawing.Point(333, 26);
+			this.cbStopAttack.Location = new System.Drawing.Point(328, 27);
 			this.cbStopAttack.Name = "cbStopAttack";
 			this.cbStopAttack.Size = new System.Drawing.Size(138, 24);
 			this.cbStopAttack.TabIndex = 17;
@@ -401,12 +401,13 @@
 			// cbRejectItemDrop
 			// 
 			this.cbRejectItemDrop.AutoSize = true;
-			this.cbRejectItemDrop.Location = new System.Drawing.Point(167, 99);
+			this.cbRejectItemDrop.Location = new System.Drawing.Point(328, 99);
 			this.cbRejectItemDrop.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cbRejectItemDrop.Name = "cbRejectItemDrop";
 			this.cbRejectItemDrop.Size = new System.Drawing.Size(151, 24);
 			this.cbRejectItemDrop.TabIndex = 30;
 			this.cbRejectItemDrop.Text = "Reject item drop";
+			this.cbRejectItemDrop.Visible = false;
 			this.cbRejectItemDrop.CheckedChanged += new System.EventHandler(this.cbRejectItemDrop_CheckedChanged);
 			// 
 			// cbAntiCounter
@@ -424,7 +425,7 @@
 			// cbCopyWalk
 			// 
 			this.cbCopyWalk.AutoSize = true;
-			this.cbCopyWalk.Location = new System.Drawing.Point(333, 99);
+			this.cbCopyWalk.Location = new System.Drawing.Point(167, 99);
 			this.cbCopyWalk.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cbCopyWalk.Name = "cbCopyWalk";
 			this.cbCopyWalk.Size = new System.Drawing.Size(110, 24);

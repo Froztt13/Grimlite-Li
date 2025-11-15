@@ -48,8 +48,9 @@ namespace Grimoire.UI.Maid
 
         public PartyInvitationHandler PartyInvitationHandler { get; } = new PartyInvitationHandler();
 
-        string[] buffSkill = null;
-        int buffIndex = 0;
+		private bool cancelAutoAttack = false;
+		private string[] stopSkillList = Array.Empty<string>();
+		private int stopSkillIndex = 0;
 
 		private int hpLowerPercentage => (int)numHpLowerPercentage.Value;
 		private string[] hpLowerSkillList = null;
@@ -103,6 +104,11 @@ namespace Grimoire.UI.Maid
 
         private async void cbEnablePlugin_CheckedChanged(object sender, EventArgs e)
         {
+            if (!Player.IsLoggedIn)
+            {
+                cbEnablePlugin.Checked = false;
+                return;
+            }
             resetSpecials();
             if (cbEnablePlugin.Checked)
             {
@@ -158,8 +164,8 @@ namespace Grimoire.UI.Maid
 
 				if (cbSkillStop.Checked)
                 {
-                    buffSkill = tbSkillStop.Text.Split(',');
-                    buffIndex = 0;
+                    stopSkillList = tbSkillStop.Text.Split(',');
+                    stopSkillIndex = 0;
                 }
 
                 // auto equip Scroll of Enrage
@@ -229,7 +235,7 @@ namespace Grimoire.UI.Maid
 
 							if (cbStopAttack.Checked)
                             {
-                                if (Player.HasTarget)
+                                if (Player.HasTarget && cancelAutoAttack)
                                 {
                                     Player.CancelAutoAttack();
                                     Player.CancelTarget();
@@ -237,11 +243,11 @@ namespace Grimoire.UI.Maid
 
                                 if (cbSkillStop.Checked && tbSkillStop.Text != String.Empty)
                                 {
-                                    useSkill(buffSkill[buffIndex]);
-                                    buffIndex++;
+                                    useSkill(stopSkillList[stopSkillIndex]);
+                                    stopSkillIndex++;
 
-                                    if (buffIndex >= buffSkill.Length)
-                                        buffIndex = 0;
+                                    if (stopSkillIndex >= stopSkillList.Length)
+                                        stopSkillIndex = 0;
                                 }
 
                                 await Task.Delay(skillDelay);
@@ -678,8 +684,6 @@ namespace Grimoire.UI.Maid
             }
         }
 
-        private bool counterAttack = false;
-
         private void AntiCounterHandler(string function, params object[] args)
         {
             if (function != "packetFromServer") return;
@@ -702,7 +706,7 @@ namespace Grimoire.UI.Maid
                                     if (msg.Contains("prepares a counter attack"))
                                     {
                                         //debug("Counter Attack: active");
-                                        counterAttack = true;
+                                        cancelAutoAttack = true;
                                         cbStopAttack.Checked = true;
                                     }
                                 }
@@ -715,13 +719,13 @@ namespace Grimoire.UI.Maid
                         if (a != null)
                         {
                             // Sun's Heat is reverting any Heal to Damage
-                            cbStopAttack.Checked = Player.GetAuras(true, "Sun's Heat") > 0 || counterAttack;
+                            cbStopAttack.Checked = Player.GetAuras(true, "Sun's Heat") > 0 || cancelAutoAttack;
                             foreach (JObject aura in a)
                             {
                                 JObject aura2 = (JObject)aura["aura"];
                                 if (aura2?["nam"]?.ToString() == "Counter Attack" && aura.GetValue("cmd")?.ToString().Contains("aura-") == true)
                                 {
-                                    counterAttack = false;
+                                    cancelAutoAttack = false;
                                     cbStopAttack.Checked = false;
                                     //debug("Counter Attack: fades");
                                     break;
@@ -890,7 +894,7 @@ namespace Grimoire.UI.Maid
             {
                 crystalCount = 0;
             }
-            counterAttack = false;
+            cancelAutoAttack = false;
         }
 
         /* Hotkey */
@@ -1041,8 +1045,8 @@ namespace Grimoire.UI.Maid
             tbSkillStop.Enabled = !cbSkillStop.Checked;
             if (cbSkillStop.Checked)
             {
-                buffSkill = tbSkillStop.Text.Split(',');
-                buffIndex = 0;
+                stopSkillList = tbSkillStop.Text.Split(',');
+                stopSkillIndex = 0;
             }
         }
 
@@ -1265,10 +1269,17 @@ namespace Grimoire.UI.Maid
                 WhitelistMapMaps = WhitelistMapForm.Instance.tbWhitelistMap.Text,
                 RelogDelay = (int)numRelogDelay.Value,
                 GlobalHotkey = cbEnableGlobalHotkey.Checked,
+
                 SafeSkill = cbHpLower.Checked,
                 SafeSkillList = tbSkillHpLower.Text,
                 SafeSkillHP = (int)numHpLowerPercentage.Value,
-                BuffStopAttack = cbSkillStop.Checked,
+
+				SafeSkill2 = cbHpGreater.Checked,
+				SafeSkillList2 = tbSkillHpGreater.Text,
+				SafeSkillHP2 = (int)numHpGreaterPercentage.Value,
+
+                PartyCmd = cbPartyCmd.Checked,
+				BuffStopAttack = cbSkillStop.Checked,
                 BuffStopAttackList = tbSkillStop.Text,
                 AttackPriority = cbAttackPriority.Checked,
                 AttackPriorityMonster = tbAttPriority.Text,
@@ -1325,12 +1336,20 @@ namespace Grimoire.UI.Maid
                     WhitelistMapForm.Instance.tbWhitelistMap.Text = config.WhitelistMapMaps;
                     numRelogDelay.Value = config.RelogDelay;
                     cbEnableGlobalHotkey.Checked = config.GlobalHotkey;
+
                     cbHpLower.Checked = config.SafeSkill;
                     tbSkillHpLower.Text = config.SafeSkillList;
                     numHpLowerPercentage.Value = config.SafeSkillHP;
-                    cbSkillStop.Checked = config.BuffStopAttack;
+
+					cbHpGreater.Checked = config.SafeSkill2;
+					tbSkillHpGreater.Text = config.SafeSkillList2;
+					numHpGreaterPercentage.Value = config.SafeSkillHP2 ?? 60;
+
+					cbSkillStop.Checked = config.BuffStopAttack;
                     tbSkillStop.Text = config.BuffStopAttackList;
-                    cbAttackPriority.Checked = config.AttackPriority;
+
+                    cbPartyCmd.Checked = config.PartyCmd;
+					cbAttackPriority.Checked = config.AttackPriority;
                     tbAttPriority.Text = config.AttackPriorityMonster;
                     cbCopyWalk.Checked = config.CopyWalk;
                     tbSpecialMsg.Text = config.SpecialMsg;
