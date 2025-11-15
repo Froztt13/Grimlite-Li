@@ -112,7 +112,8 @@ namespace Grimoire.UI
 			this.pbKuzyph.Location = new System.Drawing.Point(30, 166);
 			this.pbKuzyph.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.pbKuzyph.Name = "pbKuzyph";
-			this.pbKuzyph.Size = new System.Drawing.Size(24, 25);
+			this.pbKuzyph.Size = new System.Drawing.Size(24, 24);
+			this.pbKuzyph.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.pbKuzyph.TabIndex = 28;
 			this.pbKuzyph.TabStop = false;
 			this.pbKuzyph.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -136,7 +137,8 @@ namespace Grimoire.UI
 			this.pbDropbox.Location = new System.Drawing.Point(30, 195);
 			this.pbDropbox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.pbDropbox.Name = "pbDropbox";
-			this.pbDropbox.Size = new System.Drawing.Size(24, 25);
+			this.pbDropbox.Size = new System.Drawing.Size(24, 24);
+			this.pbDropbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.pbDropbox.TabIndex = 24;
 			this.pbDropbox.TabStop = false;
 			this.pbDropbox.Click += new System.EventHandler(this.pbDropbox_Click);
@@ -180,12 +182,14 @@ namespace Grimoire.UI
 			// tbGameSWF
 			// 
 			this.tbGameSWF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.tbGameSWF.Location = new System.Drawing.Point(632, 592);
+			this.tbGameSWF.Location = new System.Drawing.Point(632, 597);
 			this.tbGameSWF.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.tbGameSWF.Multiline = true;
 			this.tbGameSWF.Name = "tbGameSWF";
-			this.tbGameSWF.Size = new System.Drawing.Size(176, 26);
+			this.tbGameSWF.Size = new System.Drawing.Size(177, 33);
 			this.tbGameSWF.TabIndex = 18;
 			this.tbGameSWF.Text = "Loader/grimoire.swf";
+			this.tbGameSWF.WordWrap = false;
 			// 
 			// pbFrozttGithub
 			// 
@@ -195,7 +199,8 @@ namespace Grimoire.UI
 			this.pbFrozttGithub.Location = new System.Drawing.Point(30, 138);
 			this.pbFrozttGithub.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.pbFrozttGithub.Name = "pbFrozttGithub";
-			this.pbFrozttGithub.Size = new System.Drawing.Size(24, 25);
+			this.pbFrozttGithub.Size = new System.Drawing.Size(24, 24);
+			this.pbFrozttGithub.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.pbFrozttGithub.TabIndex = 17;
 			this.pbFrozttGithub.TabStop = false;
 			this.pbFrozttGithub.Click += new System.EventHandler(this.pbFrozttGithub_Click);
@@ -300,7 +305,8 @@ namespace Grimoire.UI
 			this.pbCatGithub.Location = new System.Drawing.Point(32, 309);
 			this.pbCatGithub.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.pbCatGithub.Name = "pbCatGithub";
-			this.pbCatGithub.Size = new System.Drawing.Size(24, 25);
+			this.pbCatGithub.Size = new System.Drawing.Size(24, 24);
+			this.pbCatGithub.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.pbCatGithub.TabIndex = 7;
 			this.pbCatGithub.TabStop = false;
 			this.pbCatGithub.Click += new System.EventHandler(this.pbCatGithub_Click);
@@ -313,6 +319,7 @@ namespace Grimoire.UI
 			this.pbEmperorMPGH.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.pbEmperorMPGH.Name = "pbEmperorMPGH";
 			this.pbEmperorMPGH.Size = new System.Drawing.Size(24, 25);
+			this.pbEmperorMPGH.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.pbEmperorMPGH.TabIndex = 7;
 			this.pbEmperorMPGH.TabStop = false;
 			this.pbEmperorMPGH.Click += new System.EventHandler(this.pbEmperorMPGH_Click);
@@ -325,6 +332,7 @@ namespace Grimoire.UI
 			this.pbBineyMPGH.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.pbBineyMPGH.Name = "pbBineyMPGH";
 			this.pbBineyMPGH.Size = new System.Drawing.Size(24, 25);
+			this.pbBineyMPGH.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.pbBineyMPGH.TabIndex = 7;
 			this.pbBineyMPGH.TabStop = false;
 			this.pbBineyMPGH.Click += new System.EventHandler(this.pbBineyMPGH_Click);
@@ -336,7 +344,8 @@ namespace Grimoire.UI
 			this.pbsatanGithub.Location = new System.Drawing.Point(32, 275);
 			this.pbsatanGithub.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.pbsatanGithub.Name = "pbsatanGithub";
-			this.pbsatanGithub.Size = new System.Drawing.Size(24, 25);
+			this.pbsatanGithub.Size = new System.Drawing.Size(24, 24);
+			this.pbsatanGithub.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.pbsatanGithub.TabIndex = 7;
 			this.pbsatanGithub.TabStop = false;
 			this.pbsatanGithub.Click += new System.EventHandler(this.pbsatanGithub_Click);

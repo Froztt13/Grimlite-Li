@@ -655,18 +655,13 @@ namespace Grimoire.UI
             // 
             // numStoryQuestId
             // 
-            this.numStoryQuestId.IncrementAlternate = new decimal(new int[] {
+			this.numStoryQuestId.IncrementAlternate = new decimal(new int[] {
             10,
             0,
             0,
             65536});
             this.numStoryQuestId.Location = new System.Drawing.Point(9, 50);
             this.numStoryQuestId.LoopValues = false;
-            this.numStoryQuestId.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
             this.numStoryQuestId.Name = "numStoryQuestId";
             this.numStoryQuestId.Size = new System.Drawing.Size(75, 20);
             this.numStoryQuestId.TabIndex = 9;
@@ -729,6 +724,9 @@ namespace Grimoire.UI
             this.darkGroupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numStoryQuestId)).EndInit();
             this.ResumeLayout(false);
+			this.darkGroupBox2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numStoryQuestId)).EndInit();
+			this.ResumeLayout(false);
 
         }
 

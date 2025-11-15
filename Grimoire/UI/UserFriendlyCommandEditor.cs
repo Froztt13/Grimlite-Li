@@ -126,7 +126,7 @@ namespace Grimoire.UI
                             {
                                 Name = $"lbl{item.Key}{count}",
                                 Text = lblText,
-                                Size = new System.Drawing.Size(90, 20),
+                                Size = new System.Drawing.Size(80, 33),
                                 Location = new System.Drawing.Point(25, currentY + 2),
                                 Anchor = AnchorStyles.Left | AnchorStyles.Top
                             },
@@ -134,7 +134,7 @@ namespace Grimoire.UI
                             {
                                 Name = $"tb{item.Key}{count}",
                                 Text = tbText,
-                                Size = new System.Drawing.Size(160, 20),
+                                Size = new System.Drawing.Size(310, 33),
                                 Location = new System.Drawing.Point(125, currentY),
                                 Anchor = AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left
                             }));
@@ -144,7 +144,7 @@ namespace Grimoire.UI
                         // Make key handler for each textbox
                         currentVars[item.Key].Value.KeyDown += commandEditor.txtCmd_KeyDown;
                         count++;
-                        currentY += 30;
+                        currentY += 36;
                     }
                     //honestly i have no fucking idea how to implement this properly
                 }
@@ -205,102 +205,109 @@ namespace Grimoire.UI
 
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserFriendlyCommandEditor));
-            this.btnOK = new DarkUI.Controls.DarkButton();
-            this.btnCancel = new DarkUI.Controls.DarkButton();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.btnRawCommand = new DarkUI.Controls.DarkButton();
-            this.btnGetInfo = new DarkUI.Controls.DarkButton();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // btnOK
-            // 
-            this.btnOK.Checked = false;
-            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnOK.Location = new System.Drawing.Point(0, 0);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(137, 23);
-            this.btnOK.TabIndex = 0;
-            this.btnOK.Text = "OK";
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Checked = false;
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCancel.Location = new System.Drawing.Point(0, 0);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(141, 23);
-            this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "Cancel";
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserFriendlyCommandEditor));
+			this.btnOK = new DarkUI.Controls.DarkButton();
+			this.btnCancel = new DarkUI.Controls.DarkButton();
+			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.btnRawCommand = new DarkUI.Controls.DarkButton();
+			this.btnGetInfo = new DarkUI.Controls.DarkButton();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+			this.splitContainer1.Panel1.SuspendLayout();
+			this.splitContainer1.Panel2.SuspendLayout();
+			this.splitContainer1.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// btnOK
+			// 
+			this.btnOK.Checked = false;
+			this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.btnOK.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.btnOK.Location = new System.Drawing.Point(0, 0);
+			this.btnOK.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.btnOK.Name = "btnOK";
+			this.btnOK.Size = new System.Drawing.Size(207, 35);
+			this.btnOK.TabIndex = 0;
+			this.btnOK.Text = "OK";
+			// 
+			// btnCancel
+			// 
+			this.btnCancel.Checked = false;
+			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.btnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.btnCancel.Location = new System.Drawing.Point(0, 0);
+			this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.btnCancel.Name = "btnCancel";
+			this.btnCancel.Size = new System.Drawing.Size(210, 35);
+			this.btnCancel.TabIndex = 1;
+			this.btnCancel.Text = "Cancel";
+			// 
+			// splitContainer1
+			// 
+			this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(12, 46);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.btnCancel);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.btnOK);
-            this.splitContainer1.Size = new System.Drawing.Size(282, 23);
-            this.splitContainer1.SplitterDistance = 141;
-            this.splitContainer1.TabIndex = 2;
-            // 
-            // btnRawCommand
-            // 
-            this.btnRawCommand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+			this.splitContainer1.Location = new System.Drawing.Point(18, 108);
+			this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.splitContainer1.Name = "splitContainer1";
+			// 
+			// splitContainer1.Panel1
+			// 
+			this.splitContainer1.Panel1.Controls.Add(this.btnCancel);
+			// 
+			// splitContainer1.Panel2
+			// 
+			this.splitContainer1.Panel2.Controls.Add(this.btnOK);
+			this.splitContainer1.Size = new System.Drawing.Size(423, 35);
+			this.splitContainer1.SplitterDistance = 210;
+			this.splitContainer1.SplitterWidth = 6;
+			this.splitContainer1.TabIndex = 2;
+			// 
+			// btnRawCommand
+			// 
+			this.btnRawCommand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRawCommand.Checked = false;
-            this.btnRawCommand.DialogResult = System.Windows.Forms.DialogResult.Abort;
-            this.btnRawCommand.Location = new System.Drawing.Point(12, 17);
-            this.btnRawCommand.Name = "btnRawCommand";
-            this.btnRawCommand.Size = new System.Drawing.Size(282, 23);
-            this.btnRawCommand.TabIndex = 3;
-            this.btnRawCommand.Text = "Raw Command Editor";
-            // 
-            // btnGetInfo
-            // 
-            this.btnGetInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+			this.btnRawCommand.Checked = false;
+			this.btnRawCommand.DialogResult = System.Windows.Forms.DialogResult.Abort;
+			this.btnRawCommand.Location = new System.Drawing.Point(18, 69);
+			this.btnRawCommand.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.btnRawCommand.Name = "btnRawCommand";
+			this.btnRawCommand.Size = new System.Drawing.Size(423, 35);
+			this.btnRawCommand.TabIndex = 3;
+			this.btnRawCommand.Text = "Raw Command Editor";
+			// 
+			// btnGetInfo
+			// 
+			this.btnGetInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGetInfo.Checked = false;
-            this.btnGetInfo.Location = new System.Drawing.Point(12, -12);
-            this.btnGetInfo.Name = "btnGetInfo";
-            this.btnGetInfo.Size = new System.Drawing.Size(282, 23);
-            this.btnGetInfo.TabIndex = 4;
-            this.btnGetInfo.Text = "Get Cell / Map / Pad";
-            this.btnGetInfo.Click += new System.EventHandler(this.BtnGetInfo_Click);
-            // 
-            // UserFriendlyCommandEditor
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(308, 81);
-            this.Controls.Add(this.btnGetInfo);
-            this.Controls.Add(this.btnRawCommand);
-            this.Controls.Add(this.splitContainer1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.Name = "UserFriendlyCommandEditor";
-            this.Text = "Command Editor";
-            this.TopMost = true;
-            this.Load += new System.EventHandler(this.RawCommandEditor_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UserFriendlyCommandEditor_KeyDown);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            this.ResumeLayout(false);
+			this.btnGetInfo.Checked = false;
+			this.btnGetInfo.Location = new System.Drawing.Point(18, 30);
+			this.btnGetInfo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.btnGetInfo.Name = "btnGetInfo";
+			this.btnGetInfo.Size = new System.Drawing.Size(423, 35);
+			this.btnGetInfo.TabIndex = 4;
+			this.btnGetInfo.Text = "Get Cell / Map / Pad";
+			this.btnGetInfo.Click += new System.EventHandler(this.BtnGetInfo_Click);
+			// 
+			// UserFriendlyCommandEditor
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(462, 162);
+			this.Controls.Add(this.btnGetInfo);
+			this.Controls.Add(this.btnRawCommand);
+			this.Controls.Add(this.splitContainer1);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.MaximizeBox = false;
+			this.Name = "UserFriendlyCommandEditor";
+			this.Text = "Command Editor";
+			this.TopMost = true;
+			this.Load += new System.EventHandler(this.RawCommandEditor_Load);
+			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UserFriendlyCommandEditor_KeyDown);
+			this.splitContainer1.Panel1.ResumeLayout(false);
+			this.splitContainer1.Panel2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+			this.splitContainer1.ResumeLayout(false);
+			this.ResumeLayout(false);
 
         }
         private void BtnGetInfo_Click(object sender, EventArgs e)

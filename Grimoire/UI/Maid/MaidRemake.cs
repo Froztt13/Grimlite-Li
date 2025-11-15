@@ -18,6 +18,7 @@ using Grimoire.Game.Data;
 using System.Linq;
 using System.Threading;
 using System.Collections.Generic;
+using Grimoire.Botting;
 
 namespace Grimoire.UI.Maid
 {
@@ -47,15 +48,18 @@ namespace Grimoire.UI.Maid
 
         public PartyInvitationHandler PartyInvitationHandler { get; } = new PartyInvitationHandler();
 
-        private int healthPercent => (int)MaidRemake.Instance.numHealthPercent.Value;
-
         string[] buffSkill = null;
         int buffIndex = 0;
 
-        string[] healSkill = null;
-        int healIndex = 0;
+		private int hpLowerPercentage => (int)numHpLowerPercentage.Value;
+		private string[] hpLowerSkillList = null;
+        private int hpLowerSkillIndex = 0;
 
-        string[] monsterList = null;
+		private int hpGreaterPercentage => (int)numHpGreaterPercentage.Value;
+		private string[] hpGreaterSkillList = null;
+		private int hpGreaterSkillIndex = 0;
+
+		string[] monsterList = null;
 
         bool onPause = false;
 
@@ -75,9 +79,6 @@ namespace Grimoire.UI.Maid
             if (Player.IsLoggedIn) cmbGotoUsername.Text = Player.Username;
             cmbUltraBoss.SelectedIndex = 0;
             this.Text = $"Maid Remake";
-
-            Flash.FlashCall2 += AntiCounterHandler;
-
             ToolTip toolTip = new ToolTip();
             toolTip.SetToolTip(this.cbPartyCmd,
                 "[Auto accept any party invitation when checked]" +
@@ -114,7 +115,9 @@ namespace Grimoire.UI.Maid
                 string[] skillList = tbSkillList.Text.Split(',');
                 int skillIndex = 0;
 
-                if (cbHandleLockedMap.Checked && AlternativeMap.Count() > 0)
+                Flash.Call("SetInfiniteRange");
+
+				if (cbHandleLockedMap.Checked && AlternativeMap.Count() > 0)
                     AlternativeMap.Init();
                 else if (cbHandleLockedMap.Checked)
                     cbHandleLockedMap.Checked = false;
@@ -132,18 +135,30 @@ namespace Grimoire.UI.Maid
                 if (cbSpecialAnims.Checked)
                     Flash.FlashCall2 += AnimsMsgHandler;
 
-                if (!cbUnfollow.Checked && Player.IsLoggedIn && !World.IsMapLoading && isPlayerInMyRoom && !isPlayerInMyCell)
+                if (cbAntiCounter.Checked)
+					Flash.FlashCall2 += AntiCounterHandler;
+
+                if (cbPartyCmd.Checked)
+                {
+					Proxy.Instance.RegisterHandler(PartyInvitationHandler);
+					Proxy.Instance.RegisterHandler(PartyChatHandler);
+				}
+
+				if (!cbUnfollow.Checked && Player.IsLoggedIn && !World.IsMapLoading && isPlayerInMyRoom && !isPlayerInMyCell)
                     Player.GoToPlayer(targetUsername);
 
                 if (cbAttackPriority.Checked)
                     monsterList = tbAttPriority.Text.Split(',');
 
-                if (cbUseHeal.Checked)
-                    healSkill = tbHealSkill.Text.Split(',');
+                if (cbHpLower.Checked)
+                    hpLowerSkillList = tbSkillHpLower.Text.Split(',');
 
-                if (cbBuffIfStop.Checked)
+				if (cbHpGreater.Checked)
+					hpGreaterSkillList = tbSkillHpGreater.Text.Split(',');
+
+				if (cbSkillStop.Checked)
                 {
-                    buffSkill = tbBuffSkill.Text.Split(',');
+                    buffSkill = tbSkillStop.Text.Split(',');
                     buffIndex = 0;
                 }
 
@@ -179,20 +194,40 @@ namespace Grimoire.UI.Maid
                                 continue;
                             }
 
-                            if (cbUseHeal.Checked && tbHealSkill.Text != String.Empty && isHealthUnder(healthPercent))
+							// execute useSkill if player HP lower than threshold
+							/*if (cbHpLower.Checked && 
+                                tbSkillHpLower.Text != String.Empty && 
+                                IsHealthLowerThan(hpLowerPercentage))
                             {
-                                useSkill(healSkill[healIndex]);
-                                //Player.UseSkill(healSkill[healIndex]);
-                                healIndex++;
+                                useSkill(hpLowerSkillList[hpLowerSkillIndex]);
+                                hpLowerSkillIndex++;
 
-                                if (healIndex >= healSkill.Length)
-                                    healIndex = 0;
+                                if (hpLowerSkillIndex >= hpLowerSkillList.Length)
+                                    hpLowerSkillIndex = 0;
 
                                 await Task.Delay(skillDelay);
                                 continue;
-                            }
+							}*/
 
-                            if (cbStopAttack.Checked)
+							// skip useSkill if player HP gerater than threshold
+							if (cbHpLower.Checked &&
+								hpLowerSkillList.Contains(skillList[skillIndex]) &&
+								IsHealthGreaterThan(hpLowerPercentage))
+							{
+                                skillIndex++;
+								continue;
+							}
+
+							// skip useSkill if player HP lower than threshold
+							if (cbHpGreater.Checked && 
+                                hpGreaterSkillList.Contains(skillList[skillIndex]) && 
+                                IsHealthLowerThan(hpGreaterPercentage))
+							{
+                                skillIndex++;
+								continue;
+							}
+
+							if (cbStopAttack.Checked)
                             {
                                 if (Player.HasTarget)
                                 {
@@ -200,10 +235,9 @@ namespace Grimoire.UI.Maid
                                     Player.CancelTarget();
                                 }
 
-                                if (cbBuffIfStop.Checked && tbBuffSkill.Text != String.Empty)
+                                if (cbSkillStop.Checked && tbSkillStop.Text != String.Empty)
                                 {
                                     useSkill(buffSkill[buffIndex]);
-                                    //Player.UseSkill(buffSkill[buffIndex]);
                                     buffIndex++;
 
                                     if (buffIndex >= buffSkill.Length)
@@ -241,9 +275,12 @@ namespace Grimoire.UI.Maid
 
                             // do attack with skills
                             if (Player.HasTarget)
-                            {
-                                //For class with some aura detection or Ultragramiel boss fight
-                                await SpecialCombo();
+							{
+								//general loop taunt
+								DoLoopTaunt();
+
+								//For class with some aura detection
+								await SpecialCombo();
                                 if (tauntTask == null)
                                     taunt();
                                 // force, to ensure a skill is REALLY executed 
@@ -313,9 +350,24 @@ namespace Grimoire.UI.Maid
             {
                 stopMaid();
             }
-        }
+		}
 
-        private void useSkill(string skillIndex)
+		private void DoLoopTaunt()
+		{
+			// ultra gramiel
+			if (Player.Map == "ultragramiel")
+			{
+				if (World.IsMonsterAvailable("Grace Crystal")) return;
+				if (Player.GetAuras(false, "Focus") < 1 &&
+					Player.GetAuras(true, "Vendetta") < 1 &&
+					Player.SkillAvailable("5") == 0)
+				{
+					Player.UseSkill("5");
+				}
+			}
+		}
+
+		private void useSkill(string skillIndex)
         {
             if (isUsingCSH())
             {
@@ -459,9 +511,11 @@ namespace Grimoire.UI.Maid
                     await Task.Delay(200);
                 }
             }
+        }
 
+            // DOESNT WORK PROPERLY
             // ultra gramiel
-            if (Player.Map == "ultragramiel")
+            /*if (Player.Map == "ultragramiel")
             {
                 // string target = Player.GetTargetName().ToLower();
                 if (Player.GetTargetName()?.IndexOf("grace crystal", StringComparison.OrdinalIgnoreCase) >= 0 ||
@@ -481,7 +535,7 @@ namespace Grimoire.UI.Maid
                     ResetToken(false);
                 }
             }
-        }
+        }*/
         private void CheckCrystalHealthBalance()
         {
             var monsters = World.GetAllMonsters();
@@ -660,11 +714,12 @@ namespace Grimoire.UI.Maid
                         JArray a = (JArray)jsonMessage.DataObject?["a"];
                         if (a != null)
                         {
+                            // Sun's Heat is reverting any Heal to Damage
                             cbStopAttack.Checked = Player.GetAuras(true, "Sun's Heat") > 0 || counterAttack;
                             foreach (JObject aura in a)
                             {
                                 JObject aura2 = (JObject)aura["aura"];
-                                if (aura2?["nam"]?.ToString() == "Counter Attack" && aura.GetValue("cmd")?.ToString() == "aura--")
+                                if (aura2?["nam"]?.ToString() == "Counter Attack" && aura.GetValue("cmd")?.ToString().Contains("aura-") == true)
                                 {
                                     counterAttack = false;
                                     cbStopAttack.Checked = false;
@@ -733,13 +788,19 @@ namespace Grimoire.UI.Maid
             return false;
         }
 
-        private bool isHealthUnder(int percentage)
+        private bool IsHealthLowerThan(int percentage)
         {
             int healthBoundary = Player.HealthMax * percentage / 100;
-            return Player.Health <= healthBoundary ? true : false;
-        }
+            return Player.Health <= healthBoundary;
+		}
 
-        private async void gotoTarget(string targetUsername)
+		private bool IsHealthGreaterThan(int percentage)
+		{
+			int healthBoundary = Player.HealthMax * percentage / 100;
+			return Player.Health >= healthBoundary;
+		}
+
+		private async void gotoTarget(string targetUsername)
         {
             if (Player.CurrentState != Player.State.Idle)
                 Player.MoveToCell("Enter", "Spawn");
@@ -762,6 +823,7 @@ namespace Grimoire.UI.Maid
             btnMe.Enabled = false;
             cbCopyWalk.Enabled = false;
             cmbUltraBoss.Enabled = false;
+            cbAntiCounter.Enabled = false;
             Root.Instance.maidStrip.Font = new Font("Segoe UI", 9, FontStyle.Bold | FontStyle.Underline);
             if (LockedMapForm.Instance.Visible)
             {
@@ -775,7 +837,6 @@ namespace Grimoire.UI.Maid
                     WhitelistMapForm.Instance.WindowState = FormWindowState.Normal;
                 WhitelistMapForm.Instance.Hide();
             }
-            antiCounter();
         }
 
         public void stopMaid()
@@ -784,10 +845,15 @@ namespace Grimoire.UI.Maid
             Proxy.Instance.UnregisterHandler(CJHandler);
             Proxy.Instance.UnregisterHandler(JoinMapHandler);
             Proxy.Instance.UnregisterHandler(CopyWalkHandler);
+            Proxy.Instance.UnregisterHandler(PartyChatHandler);
+            Proxy.Instance.UnregisterHandler(PartyInvitationHandler);
+
             if (cbSpecialAnims.Checked)
                 Flash.FlashCall2 -= AnimsMsgHandler;
+            if (cbAntiCounter.Checked)
+                Flash.FlashCall2 -= AntiCounterHandler;
 
-            cbSpecialAnims.Enabled = true;
+			cbSpecialAnims.Enabled = true;
             tbSpecialMsg.Enabled = true;
             numSkillAct.Enabled = true;
             cmbGotoUsername.Enabled = true;
@@ -798,6 +864,7 @@ namespace Grimoire.UI.Maid
             cbCopyWalk.Enabled = true;
             cmbUltraBoss.Enabled = true;
             cbEnablePlugin.Checked = false;
+            cbAntiCounter.Enabled = true;
             onPause = false;
             ResetToken(true);
             if (!string.IsNullOrWhiteSpace(msgTemp))
@@ -949,22 +1016,32 @@ namespace Grimoire.UI.Maid
             }
         }
 
-        private void cbUseHeal_CheckedChanged(object sender, EventArgs e)
+        private void cbHpLower_CheckedChanged(object sender, EventArgs e)
         {
-            tbHealSkill.Enabled = !cbUseHeal.Checked;
-            numHealthPercent.Enabled = !cbUseHeal.Checked;
-            if (cbUseHeal.Checked)
+            tbSkillHpLower.Enabled = !cbHpLower.Checked;
+            numHpLowerPercentage.Enabled = !cbHpLower.Checked;
+            if (cbHpLower.Checked)
             {
-                healSkill = tbHealSkill.Text.Split(',');
+                hpLowerSkillList = tbSkillHpLower.Text.Split(',');
             }
         }
 
-        private void cbBuffIfStop_CheckedChanged(object sender, EventArgs e)
+		private void cbHpGreater_CheckedChanged(object sender, EventArgs e)
+		{
+			tbSkillHpGreater.Enabled = !cbHpGreater.Checked;
+			numHpGreaterPercentage.Enabled = !cbHpGreater.Checked;
+			if (cbHpGreater.Checked)
+			{
+				hpGreaterSkillList = tbSkillHpGreater.Text.Split(',');
+			}
+		}
+
+		private void cbBuffIfStop_CheckedChanged(object sender, EventArgs e)
         {
-            tbBuffSkill.Enabled = !cbBuffIfStop.Checked;
-            if (cbBuffIfStop.Checked)
+            tbSkillStop.Enabled = !cbSkillStop.Checked;
+            if (cbSkillStop.Checked)
             {
-                buffSkill = tbBuffSkill.Text.Split(',');
+                buffSkill = tbSkillStop.Text.Split(',');
                 buffIndex = 0;
             }
         }
@@ -1188,11 +1265,11 @@ namespace Grimoire.UI.Maid
                 WhitelistMapMaps = WhitelistMapForm.Instance.tbWhitelistMap.Text,
                 RelogDelay = (int)numRelogDelay.Value,
                 GlobalHotkey = cbEnableGlobalHotkey.Checked,
-                SafeSkill = cbUseHeal.Checked,
-                SafeSkillList = tbHealSkill.Text,
-                SafeSkillHP = (int)numHealthPercent.Value,
-                BuffStopAttack = cbBuffIfStop.Checked,
-                BuffStopAttackList = tbBuffSkill.Text,
+                SafeSkill = cbHpLower.Checked,
+                SafeSkillList = tbSkillHpLower.Text,
+                SafeSkillHP = (int)numHpLowerPercentage.Value,
+                BuffStopAttack = cbSkillStop.Checked,
+                BuffStopAttackList = tbSkillStop.Text,
                 AttackPriority = cbAttackPriority.Checked,
                 AttackPriorityMonster = tbAttPriority.Text,
                 CopyWalk = cbCopyWalk.Checked,
@@ -1248,11 +1325,11 @@ namespace Grimoire.UI.Maid
                     WhitelistMapForm.Instance.tbWhitelistMap.Text = config.WhitelistMapMaps;
                     numRelogDelay.Value = config.RelogDelay;
                     cbEnableGlobalHotkey.Checked = config.GlobalHotkey;
-                    cbUseHeal.Checked = config.SafeSkill;
-                    tbHealSkill.Text = config.SafeSkillList;
-                    numHealthPercent.Value = config.SafeSkillHP;
-                    cbBuffIfStop.Checked = config.BuffStopAttack;
-                    tbBuffSkill.Text = config.BuffStopAttackList;
+                    cbHpLower.Checked = config.SafeSkill;
+                    tbSkillHpLower.Text = config.SafeSkillList;
+                    numHpLowerPercentage.Value = config.SafeSkillHP;
+                    cbSkillStop.Checked = config.BuffStopAttack;
+                    tbSkillStop.Text = config.BuffStopAttackList;
                     cbAttackPriority.Checked = config.AttackPriority;
                     tbAttPriority.Text = config.AttackPriorityMonster;
                     cbCopyWalk.Checked = config.CopyWalk;
@@ -1307,20 +1384,16 @@ namespace Grimoire.UI.Maid
             if (Player.IsLoggedIn) cmbGotoUsername.Text = Player.Username;
         }
 
-        private void cbAntiCounter_CheckedChanged(object sender, EventArgs e)
-        {
-            antiCounter();
-        }
-        private void antiCounter()
-        {
-            Flash.FlashCall2 -= AntiCounterHandler;
-            if (cbAntiCounter.Checked)
-                Flash.FlashCall2 += AntiCounterHandler;
-        }
         private void cbSpecialAnims_CheckedChanged(object sender, EventArgs e)
         {
             tbSpecialMsg.Enabled = cbSpecialAnims.Checked;
             numSkillAct.Enabled = cbSpecialAnims.Checked;
         }
-    }
+
+		private void cbRejectItemDrop_CheckedChanged(object sender, EventArgs e)
+		{
+			Configuration configuration = BotManager.Instance.ActiveBotEngine.Configuration;
+            configuration.EnableRejection = cbRejectItemDrop.Checked;
+		}
+	}
 }
