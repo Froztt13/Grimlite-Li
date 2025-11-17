@@ -225,15 +225,11 @@ namespace Grimoire.UI
 			_grabSearchKeyword = "";
 			_grabSearchIndex = 0;
 
-            switch (cbOrderBy.SelectedIndex)
-            {
-                case 0:
-                    order = Grabber.OrderBy.Name;
-                    break;
-                case 1:
-                    order = Grabber.OrderBy.Id;
-                    break;
-            }
+            if (cbOrderBy.SelectedItem != null && cbOrderBy.SelectedItem.ToString() == "Id")
+                order = Grabber.OrderBy.Id;
+            else
+                order = Grabber.OrderBy.Name;
+
 
             try
             {
