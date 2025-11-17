@@ -1,4 +1,4 @@
-﻿using AxShockwaveFlashObjects;
+using AxShockwaveFlashObjects;
 using Grimoire.Game;
 using Grimoire.Networking;
 using Grimoire.Tools;
@@ -677,7 +677,7 @@ namespace Grimoire.UI
             this.cbCells.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbCells.FormattingEnabled = true;
             this.cbCells.Location = new System.Drawing.Point(814, 3);
-            this.cbCells.MaxDropDownItems = 50;
+            this.cbCells.MaxDropDownItems = 25;
             this.cbCells.Name = "cbCells";
             this.cbCells.Size = new System.Drawing.Size(85, 21);
             this.cbCells.TabIndex = 18;
