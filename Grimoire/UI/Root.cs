@@ -580,7 +580,7 @@ namespace Grimoire.UI
 			this.cbCells.ItemHeight = 28;
 			this.cbCells.Location = new System.Drawing.Point(132, 4);
 			this.cbCells.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.cbCells.MaxDropDownItems = 50;
+			this.cbCells.MaxDropDownItems = 25;
 			this.cbCells.Name = "cbCells";
 			this.cbCells.Size = new System.Drawing.Size(126, 34);
 			this.cbCells.TabIndex = 18;
