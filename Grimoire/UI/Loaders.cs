@@ -567,7 +567,7 @@ namespace Grimoire.UI
                 {
                     if (Player.Quests.Quest(listQuest[i]) != null)
                     {
-                        Player.Quests.Accept(listQuest[i].ToString());
+                        Player.Quests.Accept(listQuest[i]);
                     }
                     await Task.Delay(600);
                 }
