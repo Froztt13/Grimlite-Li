@@ -494,32 +494,36 @@ namespace Grimoire.Botting
             }
         }
 
-        private void OnQuestsLoaded(List<Quest> quests)
-        {
-            List<Quest> qs = quests.Where((Quest q) => Configuration.Quests.Any((Quest qq) => qq.Id == q.Id)).ToList();
-            int count = qs.Count;
-            if (qs.Count <= 0)
-            {
-                return;
-            }
-            Task.Run(async () =>
-            {
-                for (int i = 0; i < count; i++)
-                {
-                    paused = true;
-                    if (!qs[i].IsInProgress)
-                    {
-                        LogForm.Instance.devDebug($"Accepting Quest : {qs[i]} [{i}/{qs.Count}]");
-                        qs[i].Accept();
-                        await Task.Delay(1000);
-                    }
-                    else LogForm.Instance.devDebug($"Quest [{i}/{qs.Count}]: {qs[i]} Alr accepted");
-                }
-                paused = false;
-            });
-        }
+		private void OnQuestsLoaded(List<Quest> quests)
+		{
+			var matchingQuests = quests
+				.Where(q => Configuration.Quests.Any(configQuest => configQuest.Id == q.Id))
+				.ToList();
+			switch (matchingQuests.Count)
+			{
+				case 0:
+					return;
 
-        private void OnQuestCompleted(CompletedQuest quest)
+				case 1:
+					matchingQuests[0].Accept();
+					return;
+
+				default:
+					// for better performance, use GhostAccept for multiple quests accepting
+					for (int i = 0; i < matchingQuests.Count; i++)
+					{
+						int index = i;
+						Task.Run(async () =>
+						{
+							await Task.Delay(700 * index);
+							matchingQuests[index].GhostAccept();
+						});
+					}
+					break;
+			}
+		}
+
+		private void OnQuestCompleted(CompletedQuest quest)
         {
             Task.Run(async () =>
             {

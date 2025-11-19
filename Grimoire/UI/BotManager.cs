@@ -3408,5 +3408,5 @@ namespace Grimoire.UI
             await Task.Delay(1000);
             btnLoadMap.Enabled = true;
         }
-    }
+	}
 }

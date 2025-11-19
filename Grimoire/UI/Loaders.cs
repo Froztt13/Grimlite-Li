@@ -213,14 +213,14 @@ namespace Grimoire.UI
             treeGrabbed.BeginUpdate();
             treeGrabbed.Nodes.Clear();
 
-            Grabber.OrderBy orderBy = Grabber.OrderBy.Name;
+            Grabber.OrderBy orderBy = Grabber.OrderBy.Id;
             switch (cbOrderBy.SelectedIndex)
             {
                 case 0:
-                    orderBy = Grabber.OrderBy.Name;
+                    orderBy = Grabber.OrderBy.Id;
                     break;
                 case 1:
-                    orderBy = Grabber.OrderBy.Id;
+                    orderBy = Grabber.OrderBy.Name;
                     break;
             }
 
@@ -567,7 +567,7 @@ namespace Grimoire.UI
                 {
                     if (Player.Quests.Quest(listQuest[i]) != null)
                     {
-                        Player.Quests.Accept(listQuest[i].ToString());
+                        Player.Quests.Accept(listQuest[i]);
                     }
                     await Task.Delay(600);
                 }
