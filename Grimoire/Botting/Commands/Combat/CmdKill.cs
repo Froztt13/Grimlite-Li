@@ -1,13 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using Grimoire.Game;
 using Grimoire.Game.Data;
 using Grimoire.Tools;
 using Grimoire.UI;
+using Grimoire.Utils;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Grimoire.Botting.Commands.Combat
 {
@@ -47,7 +48,7 @@ namespace Grimoire.Botting.Commands.Combat
             if (AntiCounter)
             {
                 OptionsManager.DisableAnimations = false;
-                Flash.FlashCall += AntiCounterHandler;
+                Flash.FlashCall2 += AntiCounterHandler;
             }
 
             //Console.WriteLine("Mon:" + Monster);
@@ -63,12 +64,8 @@ namespace Grimoire.Botting.Commands.Combat
             if (AntiCounter)
             {
                 OptionsManager.DisableAnimations = disableAnims;
-                Flash.FlashCall -= AntiCounterHandler;
+                Flash.FlashCall2 -= AntiCounterHandler;
             }
-
-            //_cts?.Cancel(false);
-            //_cts?.Dispose();
-        }
 
         private static CancellationToken _token;
 
@@ -178,49 +175,63 @@ namespace Grimoire.Botting.Commands.Combat
                 if (s.waitCd && !s.hasaura())
                     await Task.Delay(200);
 
-                // if (_token.IsCancellationRequested || onPause || !Player.HasTarget)
-                // return;
-
                 //Reset back when reaching end of skill list index
                 Index = (Index < Count) ? Index + 1 : ClassIndex;
             }
         }
 
-        private void AntiCounterHandler(AxShockwaveFlashObjects.AxShockwaveFlash flash, string function, params object[] args)
+        private void AntiCounterHandler(string function, params object[] args)
         {
-            string msg = args[0].ToString();
-            if (!msg.StartsWith("{")) return;
-            if (function == "pext")
+            if (function != "packetFromServer") return;
+            try
             {
-                dynamic packet = JsonConvert.DeserializeObject<dynamic>(msg);
-                string type = packet["params"].type;
-                dynamic data = packet["params"].dataObj;
-                if (type != "json")
-                    return;
-                if (data.cmd == "ct")
+                Message message = NetworkUtils.CreateMessage((string)args[0]);
+                JsonMessage jsonMessage = message as JsonMessage;
+                if (jsonMessage != null)
                 {
-                    JArray anims = (JArray)data.anims;
-                    if (anims != null)
-                        if (anims[0]["msg"].ToString().ToLower().Contains("prepares a counter attack"))
+                    if (jsonMessage.DataObject?["anims"] != null)
+                    {
+                        JArray anims = (JArray)jsonMessage.DataObject["anims"];
+                        if (anims != null)
                         {
-                            Player.CancelAutoAttack();
-                            Player.CancelTarget();
-                            onPause = true;
-                            Console.WriteLine("Counter Attack: active");
-                        }
-                    JArray a = (JArray)data.a;
-                    if (a != null)
-                        foreach (JObject aura in a)
-                        {
-                            JObject aura2 = (JObject)aura["aura"];
-                            if (aura2.GetValue("nam")?.ToString() == "Counter Attack" && aura.GetValue("cmd")?.ToString() == "aura--")
+                            foreach (JObject anim in anims)
                             {
-                                onPause = false;
-                                Console.WriteLine("Counter Attack: fades");
-                                break;
+                                string msg = anim?["msg"]?.ToString()?.ToLower();
+                                if (msg != null)
+                                {
+                                    if (msg.Contains("prepares a counter attack"))
+                                    {
+                                        Player.CancelAutoAttack();
+                                        Player.CancelTarget();
+                                        onPause = true;
+                                        Console.WriteLine("Counter Attack: active");
+                                    }
+                                }
                             }
                         }
+                    }
+                    if (jsonMessage.DataObject?["a"] != null)
+                    {
+                        JArray a = (JArray)jsonMessage.DataObject?["a"];
+                        if (a != null)
+                        {
+                            foreach (JObject aura in a)
+                            {
+                                JObject aura2 = (JObject)aura["aura"];
+                                if (aura2?["nam"]?.ToString() == "Counter Attack" && aura.GetValue("cmd")?.ToString().Contains("aura-") == true)
+                                {
+                                    onPause = false;
+                                    Console.WriteLine("Counter Attack: fades");
+                                    break;
+                                }
+                            }
+                        }
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"err: {e}");
             }
         }
 
