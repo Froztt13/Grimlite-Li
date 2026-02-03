@@ -19,6 +19,7 @@ using System.Linq;
 using System.Threading;
 using System.Collections.Generic;
 using Grimoire.Botting;
+using Grimoire.Utils;
 
 namespace Grimoire.UI.Maid
 {
@@ -616,31 +617,12 @@ namespace Grimoire.UI.Maid
             ResetToken(true);
         }
 
-        private Grimoire.Networking.Message CreateMessage(string raw)
-        {
-            if (raw != null && raw.Length > 0)
-            {
-                switch (raw.Trim()[0])
-                {
-                    case '%':
-                        return new XtMessage(raw);
-                    case '<':
-                        return new XmlMessage(raw);
-                    case '{':
-                        return new JsonMessage(raw);
-                }
-            }
-
-            return null;
-        }
-
-
         private void AnimsMsgHandler(string function, params object[] args)
         {
             if (function != "packetFromServer") return;
             try
             {
-                Networking.Message message = CreateMessage((string)args[0]);
+                Networking.Message message = NetworkUtils.CreateMessage((string)args[0]);
                 if (message is JsonMessage)
                 {
                     JsonMessage jsonMessage = message as JsonMessage;
@@ -689,7 +671,7 @@ namespace Grimoire.UI.Maid
             if (function != "packetFromServer") return;
             try
             {
-                Grimoire.Networking.Message message = CreateMessage((string)args[0]);
+                Networking.Message message = NetworkUtils.CreateMessage((string)args[0]);
                 JsonMessage jsonMessage = message as JsonMessage;
                 if (jsonMessage != null)
                 {

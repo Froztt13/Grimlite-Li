@@ -189,7 +189,7 @@ namespace Grimoire.UI
 			lstCommands.ItemHeight = finalItemHeight;
 			lstCommands.Font = new Font(fontName, finalFontSize, FontStyle.Regular, GraphicsUnit.Point, 0);
 
-            if (chkAntiCounter.Checked) Proxy.Instance.ReceivedFromServer += CapturePlayerAura;
+            if (chkAntiCounter.Checked)	Flash.FlashCall2 += AntiCounterHandler; ;
 		}
 
         private void TextboxEnter(object sender, EventArgs e)
@@ -3144,47 +3144,70 @@ namespace Grimoire.UI
                 chkDisableAnims.Checked = false;
             if (chkAntiCounter.Checked)
             {
-                Proxy.Instance.ReceivedFromServer += CapturePlayerAura;
-            }
+				Flash.FlashCall2 += AntiCounterHandler;
+			}
             else
             {
-                Proxy.Instance.ReceivedFromServer -= CapturePlayerAura;
-            }
+				Flash.FlashCall2 -= AntiCounterHandler;
+			}
         }
-
-        private void CapturePlayerAura(Networking.Message message)
-        {
-            string msg = message.ToString();
-
-            try
-            {
-                //"cmd":"aura++","auras":[{"nam":"Counter Attack"
-                //prepares a counter attack!!
-                string c1 = "\"cmd\":\"aura++\",\"auras\":[{\"nam\":\"Counter Attack\"";
-                string c2 = "prepares a counter attack";
-                if (msg.Contains(c2))
-                {
-                    Player.CancelAutoAttack();
-                    Player.CancelTarget();
-                    if (chkEnable.Checked)
-                    {
-                        ActiveBotEngine.Configuration.SkipAttack = true;
-                    }
-                    Console.WriteLine("Counter Attack: active");
-                }
-
-                //"cmd":"aura--","aura":{"nam":"Counter Attack"
-                if (msg.Contains("\"cmd\":\"aura-\",\"aura\":{\"nam\":\"Counter Attack\""))
-                {
-                    Console.WriteLine("Counter Attack: fades");
-                    ActiveBotEngine.Configuration.SkipAttack = false;
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("err: " + e.Message);
-            }
-        }
+		private void AntiCounterHandler(string function, params object[] args)
+		{
+			if (function != "packetFromServer") return;
+			try
+			{
+				Grimoire.Networking.Message message = NetworkUtils.CreateMessage((string)args[0]);
+				JsonMessage jsonMessage = message as JsonMessage;
+				if (jsonMessage != null)
+				{
+					if (jsonMessage.DataObject?["anims"] != null)
+					{
+						JArray anims = (JArray)jsonMessage.DataObject["anims"];
+						if (anims != null)
+						{
+							foreach (JObject anim in anims.Cast<JObject>())
+							{
+								string msg = anim?["msg"]?.ToString()?.ToLower();
+								if (msg != null)
+								{
+									if (msg.Contains("prepares a counter attack"))
+									{
+										Player.CancelAutoAttack();
+										Player.CancelTarget();
+										if (chkEnable.Checked)
+										{
+											ActiveBotEngine.Configuration.SkipAttack = true;
+										}
+										Console.WriteLine("Counter Attack: active");
+									}
+								}
+							}
+						}
+					}
+					if (jsonMessage.DataObject?["a"] != null)
+					{
+						JArray a = (JArray)jsonMessage.DataObject?["a"];
+						if (a != null)
+						{
+							foreach (JObject aura in a.Cast<JObject>())
+							{
+								JObject aura2 = (JObject)aura["aura"];
+								if (aura2?["nam"]?.ToString() == "Counter Attack" && aura.GetValue("cmd")?.ToString().Contains("aura-") == true)
+								{
+									Console.WriteLine("Counter Attack: fades");
+									ActiveBotEngine.Configuration.SkipAttack = false;
+									break;
+								}
+							}
+						}
+					}
+				}
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine("err: " + e.Message);
+			}
+		}
 
         private HandlerFollow HandlerFollow = new HandlerFollow();
         private async Task setFollowHandler()
