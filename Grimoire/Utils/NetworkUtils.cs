@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using Grimoire.Networking;
+using System.Net;
 using System.Net.Sockets;
 
 namespace Grimoire.Utils
@@ -15,5 +16,23 @@ namespace Grimoire.Utils
             }
             return port;
         }
-    }
+
+		public static Message CreateMessage(string raw)
+		{
+			if (raw != null && raw.Length > 0)
+			{
+				switch (raw.Trim()[0])
+				{
+					case '%':
+						return new XtMessage(raw);
+					case '<':
+						return new XmlMessage(raw);
+					case '{':
+						return new JsonMessage(raw);
+				}
+			}
+
+			return null;
+		}
+	}
 }

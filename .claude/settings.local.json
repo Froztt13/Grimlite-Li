@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(msbuild:*)",
+      "Bash(where:*)",
+      "Bash(\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\MSBuild\\Current\\Bin\\MSBuild.exe\" Grimoire.csproj /p:Configuration=Release /p:Platform=\"Any CPU\" /verbosity:minimal)",
+      "Bash(\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\MSBuild\\Current\\Bin\\MSBuild.exe\" Grimoire.csproj /p:Configuration=Release /verbosity:minimal)",
+      "Bash(\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\MSBuild\\Current\\Bin\\MSBuild.exe\":*)",
+      "Bash(\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\MSBuild\\Current\\Bin\\MSBuild.exe\" Grimoire.csproj /verbosity:quiet)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
