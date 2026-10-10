@@ -1,5 +1,6 @@
 using Grimoire.Game;
 using Grimoire.Game.Data;
+using Grimoire.Networking;
 using Grimoire.Tools;
 using Grimoire.UI;
 using Grimoire.Utils;
@@ -66,6 +67,7 @@ namespace Grimoire.Botting.Commands.Combat
                 OptionsManager.DisableAnimations = disableAnims;
                 Flash.FlashCall2 -= AntiCounterHandler;
             }
+        }
 
         private static CancellationToken _token;
 
