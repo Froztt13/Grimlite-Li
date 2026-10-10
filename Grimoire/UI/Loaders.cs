@@ -69,6 +69,7 @@ namespace Grimoire.UI
             InitializeComponent();
             toolTip = new System.Windows.Forms.ToolTip();
             toolTip.SetToolTip(btnForceAccept, "Ghost accept the quest");
+            cbLoad.SelectedIndex = 2;
         }
         private System.Windows.Forms.ToolTip toolTip;
 
@@ -336,65 +337,65 @@ namespace Grimoire.UI
 
 		private void InitializeComponent()
 		{
-            this.txtLoaders = new DarkUI.Controls.DarkTextBox();
-            this.cbLoad = new DarkUI.Controls.DarkComboBox();
-            this.btnLoad = new DarkUI.Controls.DarkButton();
-            this.cbGrab = new DarkUI.Controls.DarkComboBox();
-            this.txtSearchGrab = new DarkUI.Controls.DarkTextBox();
-            this.btnSearchGrab = new DarkUI.Controls.DarkButton();
-            this.btnGrab = new DarkUI.Controls.DarkButton();
-            this.btnSave = new DarkUI.Controls.DarkButton();
-            this.treeGrabbed = new System.Windows.Forms.TreeView();
-            this.btnForceAccept = new DarkUI.Controls.DarkButton();
-            this.numTQuests = new DarkUI.Controls.DarkNumericUpDown();
-            this.cbOrderBy = new DarkUI.Controls.DarkComboBox();
-            this.cbGhost = new DarkUI.Controls.DarkCheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.numTQuests)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // txtLoaders
-            // 
-            this.txtLoaders.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.txtLoaders = new DarkUI.Controls.DarkTextBox();
+			this.cbLoad = new DarkUI.Controls.DarkComboBox();
+			this.btnLoad = new DarkUI.Controls.DarkButton();
+			this.cbGrab = new DarkUI.Controls.DarkComboBox();
+			this.txtSearchGrab = new DarkUI.Controls.DarkTextBox();
+			this.btnSearchGrab = new DarkUI.Controls.DarkButton();
+			this.btnGrab = new DarkUI.Controls.DarkButton();
+			this.btnSave = new DarkUI.Controls.DarkButton();
+			this.treeGrabbed = new System.Windows.Forms.TreeView();
+			this.btnForceAccept = new DarkUI.Controls.DarkButton();
+			this.numTQuests = new DarkUI.Controls.DarkNumericUpDown();
+			this.cbOrderBy = new DarkUI.Controls.DarkComboBox();
+			this.cbGhost = new DarkUI.Controls.DarkCheckBox();
+			((System.ComponentModel.ISupportInitialize)(this.numTQuests)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// txtLoaders
+			// 
+			this.txtLoaders.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLoaders.Location = new System.Drawing.Point(12, 12);
-            this.txtLoaders.Name = "txtLoaders";
-            this.txtLoaders.Size = new System.Drawing.Size(156, 20);
-            this.txtLoaders.TabIndex = 29;
-            // 
-            // cbLoad
-            // 
-            this.cbLoad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.txtLoaders.Location = new System.Drawing.Point(12, 12);
+			this.txtLoaders.Name = "txtLoaders";
+			this.txtLoaders.Size = new System.Drawing.Size(156, 20);
+			this.txtLoaders.TabIndex = 29;
+			// 
+			// cbLoad
+			// 
+			this.cbLoad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbLoad.FormattingEnabled = true;
-            this.cbLoad.Items.AddRange(new object[] {
+			this.cbLoad.FormattingEnabled = true;
+			this.cbLoad.Items.AddRange(new object[] {
             "Hair shop",
             "Shop",
             "Quest",
             "Armor customizer"});
-            this.cbLoad.Location = new System.Drawing.Point(12, 38);
-            this.cbLoad.Name = "cbLoad";
-            this.cbLoad.Size = new System.Drawing.Size(156, 21);
-            this.cbLoad.TabIndex = 30;
-            this.cbLoad.SelectedIndexChanged += new System.EventHandler(this.cbLoad_SelectedIndexChanged);
-            // 
-            // btnLoad
-            // 
-            this.btnLoad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.cbLoad.Location = new System.Drawing.Point(12, 38);
+			this.cbLoad.Name = "cbLoad";
+			this.cbLoad.Size = new System.Drawing.Size(156, 21);
+			this.cbLoad.TabIndex = 30;
+			this.cbLoad.SelectedIndexChanged += new System.EventHandler(this.cbLoad_SelectedIndexChanged);
+			// 
+			// btnLoad
+			// 
+			this.btnLoad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLoad.Checked = false;
-            this.btnLoad.Location = new System.Drawing.Point(12, 65);
-            this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(156, 23);
-            this.btnLoad.TabIndex = 31;
-            this.btnLoad.Text = "Load";
-            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
-            // 
-            // cbGrab
-            // 
-            this.cbGrab.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+			this.btnLoad.Checked = false;
+			this.btnLoad.Location = new System.Drawing.Point(12, 65);
+			this.btnLoad.Name = "btnLoad";
+			this.btnLoad.Size = new System.Drawing.Size(156, 23);
+			this.btnLoad.TabIndex = 31;
+			this.btnLoad.Text = "Load";
+			this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+			// 
+			// cbGrab
+			// 
+			this.cbGrab.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbGrab.FormattingEnabled = true;
-            this.cbGrab.Items.AddRange(new object[] {
+			this.cbGrab.FormattingEnabled = true;
+			this.cbGrab.Items.AddRange(new object[] {
             "Shop items",
             "Quest IDs",
             "Quest items, drop rates",
@@ -403,166 +404,164 @@ namespace Grimoire.UI
             "Bank items",
             "Monsters",
             "All Monsters"});
-            this.cbGrab.Location = new System.Drawing.Point(12, 306);
-            this.cbGrab.Name = "cbGrab";
-            this.cbGrab.Size = new System.Drawing.Size(174, 21);
-            this.cbGrab.TabIndex = 33;
-            this.cbGrab.SelectedIndexChanged += new System.EventHandler(this.cbGrab_SelectedIndexChanged);
-            // 
-            // txtSearchGrab
-            // 
-            this.txtSearchGrab.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+			this.cbGrab.Location = new System.Drawing.Point(12, 306);
+			this.cbGrab.Name = "cbGrab";
+			this.cbGrab.Size = new System.Drawing.Size(174, 21);
+			this.cbGrab.TabIndex = 33;
+			this.cbGrab.SelectedIndexChanged += new System.EventHandler(this.cbGrab_SelectedIndexChanged);
+			// 
+			// txtSearchGrab
+			// 
+			this.txtSearchGrab.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearchGrab.Location = new System.Drawing.Point(12, 280);
-            this.txtSearchGrab.Name = "txtSearchGrab";
-            this.txtSearchGrab.Size = new System.Drawing.Size(174, 20);
-            this.txtSearchGrab.TabIndex = 32;
-            this.txtSearchGrab.Text = "Search";
-            // 
-            // btnSearchGrab
-            // 
-            this.btnSearchGrab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearchGrab.Checked = false;
-            this.btnSearchGrab.Location = new System.Drawing.Point(192, 278);
-            this.btnSearchGrab.Name = "btnSearchGrab";
-            this.btnSearchGrab.Size = new System.Drawing.Size(67, 23);
-            this.btnSearchGrab.TabIndex = 36;
-            this.btnSearchGrab.Text = "Search";
-            this.btnSearchGrab.Click += new System.EventHandler(this.btnSearchGrab_Click);
-            // 
-            // btnGrab
-            // 
-            this.btnGrab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGrab.Checked = false;
-            this.btnGrab.Location = new System.Drawing.Point(134, 333);
-            this.btnGrab.Name = "btnGrab";
-            this.btnGrab.Size = new System.Drawing.Size(125, 26);
-            this.btnGrab.TabIndex = 34;
-            this.btnGrab.Text = "Grab";
-            this.btnGrab.Click += new System.EventHandler(this.btnGrab_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+			this.txtSearchGrab.Location = new System.Drawing.Point(12, 280);
+			this.txtSearchGrab.Name = "txtSearchGrab";
+			this.txtSearchGrab.Size = new System.Drawing.Size(174, 20);
+			this.txtSearchGrab.TabIndex = 32;
+			this.txtSearchGrab.Text = "Search";
+			// 
+			// btnSearchGrab
+			// 
+			this.btnSearchGrab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnSearchGrab.Checked = false;
+			this.btnSearchGrab.Location = new System.Drawing.Point(192, 278);
+			this.btnSearchGrab.Name = "btnSearchGrab";
+			this.btnSearchGrab.Size = new System.Drawing.Size(67, 23);
+			this.btnSearchGrab.TabIndex = 36;
+			this.btnSearchGrab.Text = "Search";
+			this.btnSearchGrab.Click += new System.EventHandler(this.btnSearchGrab_Click);
+			// 
+			// btnGrab
+			// 
+			this.btnGrab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnGrab.Checked = false;
+			this.btnGrab.Location = new System.Drawing.Point(134, 333);
+			this.btnGrab.Name = "btnGrab";
+			this.btnGrab.Size = new System.Drawing.Size(125, 26);
+			this.btnGrab.TabIndex = 34;
+			this.btnGrab.Text = "Grab";
+			this.btnGrab.Click += new System.EventHandler(this.btnGrab_Click);
+			// 
+			// btnSave
+			// 
+			this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Checked = false;
-            this.btnSave.Location = new System.Drawing.Point(12, 333);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(121, 26);
-            this.btnSave.TabIndex = 35;
-            this.btnSave.Text = "Save";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // treeGrabbed
-            // 
-            this.treeGrabbed.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.btnSave.Checked = false;
+			this.btnSave.Location = new System.Drawing.Point(12, 333);
+			this.btnSave.Name = "btnSave";
+			this.btnSave.Size = new System.Drawing.Size(121, 26);
+			this.btnSave.TabIndex = 35;
+			this.btnSave.Text = "Save";
+			this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+			// 
+			// treeGrabbed
+			// 
+			this.treeGrabbed.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.treeGrabbed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(56)))));
-            this.treeGrabbed.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.treeGrabbed.ForeColor = System.Drawing.Color.Gainsboro;
-            this.treeGrabbed.LabelEdit = true;
-            this.treeGrabbed.Location = new System.Drawing.Point(12, 94);
-            this.treeGrabbed.Name = "treeGrabbed";
-            this.treeGrabbed.Size = new System.Drawing.Size(247, 180);
-            this.treeGrabbed.TabIndex = 38;
-            // 
-            // btnForceAccept
-            // 
-            this.btnForceAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnForceAccept.Checked = false;
-            this.btnForceAccept.Enabled = false;
-            this.btnForceAccept.Location = new System.Drawing.Point(192, 38);
-            this.btnForceAccept.Name = "btnForceAccept";
-            this.btnForceAccept.Size = new System.Drawing.Size(67, 23);
-            this.btnForceAccept.TabIndex = 44;
-            this.btnForceAccept.Text = "F Accept";
-            this.btnForceAccept.Click += new System.EventHandler(this.btnForceAccept_Click_1);
-            // 
-            // numTQuests
-            // 
-            this.numTQuests.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.numTQuests.Enabled = false;
-            this.numTQuests.IncrementAlternate = new decimal(new int[] {
+			this.treeGrabbed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(56)))));
+			this.treeGrabbed.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.treeGrabbed.ForeColor = System.Drawing.Color.Gainsboro;
+			this.treeGrabbed.LabelEdit = true;
+			this.treeGrabbed.Location = new System.Drawing.Point(12, 94);
+			this.treeGrabbed.Name = "treeGrabbed";
+			this.treeGrabbed.Size = new System.Drawing.Size(247, 180);
+			this.treeGrabbed.TabIndex = 38;
+			// 
+			// btnForceAccept
+			// 
+			this.btnForceAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnForceAccept.Checked = false;
+			this.btnForceAccept.Location = new System.Drawing.Point(192, 38);
+			this.btnForceAccept.Name = "btnForceAccept";
+			this.btnForceAccept.Size = new System.Drawing.Size(67, 23);
+			this.btnForceAccept.TabIndex = 44;
+			this.btnForceAccept.Text = "F Accept";
+			this.btnForceAccept.Click += new System.EventHandler(this.btnForceAccept_Click_1);
+			// 
+			// numTQuests
+			// 
+			this.numTQuests.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.numTQuests.IncrementAlternate = new decimal(new int[] {
             10,
             0,
             0,
             65536});
-            this.numTQuests.Location = new System.Drawing.Point(192, 12);
-            this.numTQuests.LoopValues = false;
-            this.numTQuests.Maximum = new decimal(new int[] {
+			this.numTQuests.Location = new System.Drawing.Point(192, 12);
+			this.numTQuests.LoopValues = false;
+			this.numTQuests.Maximum = new decimal(new int[] {
             30,
             0,
             0,
             0});
-            this.numTQuests.Minimum = new decimal(new int[] {
+			this.numTQuests.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numTQuests.Name = "numTQuests";
-            this.numTQuests.Size = new System.Drawing.Size(67, 20);
-            this.numTQuests.TabIndex = 168;
-            this.numTQuests.Value = new decimal(new int[] {
+			this.numTQuests.Name = "numTQuests";
+			this.numTQuests.Size = new System.Drawing.Size(67, 20);
+			this.numTQuests.TabIndex = 168;
+			this.numTQuests.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            // 
-            // cbOrderBy
-            // 
-            this.cbOrderBy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbOrderBy.Enabled = false;
-            this.cbOrderBy.FormattingEnabled = true;
-            this.cbOrderBy.Items.AddRange(new object[] {
+			// 
+			// cbOrderBy
+			// 
+			this.cbOrderBy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cbOrderBy.Enabled = false;
+			this.cbOrderBy.FormattingEnabled = true;
+			this.cbOrderBy.Items.AddRange(new object[] {
             "Name",
             "Id"});
-            this.cbOrderBy.Location = new System.Drawing.Point(192, 306);
-            this.cbOrderBy.Name = "cbOrderBy";
-            this.cbOrderBy.Size = new System.Drawing.Size(67, 21);
-            this.cbOrderBy.TabIndex = 169;
-            // 
-            // cbGhost
-            // 
-            this.cbGhost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbGhost.AutoSize = true;
-            this.cbGhost.Checked = true;
-            this.cbGhost.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbGhost.Location = new System.Drawing.Point(192, 67);
-            this.cbGhost.Name = "cbGhost";
-            this.cbGhost.Size = new System.Drawing.Size(54, 17);
-            this.cbGhost.TabIndex = 170;
-            this.cbGhost.Text = "Ghost";
-            // 
-            // Loaders
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(271, 367);
-            this.Controls.Add(this.cbGhost);
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnGrab);
-            this.Controls.Add(this.cbOrderBy);
-            this.Controls.Add(this.numTQuests);
-            this.Controls.Add(this.btnForceAccept);
-            this.Controls.Add(this.treeGrabbed);
-            this.Controls.Add(this.cbGrab);
-            this.Controls.Add(this.btnLoad);
-            this.Controls.Add(this.cbLoad);
-            this.Controls.Add(this.btnSearchGrab);
-            this.Controls.Add(this.txtLoaders);
-            this.Controls.Add(this.txtSearchGrab);
-            this.Icon = global::Properties.Resources.GrimoireIcon;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "Loaders";
-            this.Text = "Loaders and grabbers";
-            this.TopMost = true;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Loaders_FormClosing);
-            this.Load += new System.EventHandler(this.Loaders_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numTQuests)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+			this.cbOrderBy.Location = new System.Drawing.Point(192, 306);
+			this.cbOrderBy.Name = "cbOrderBy";
+			this.cbOrderBy.Size = new System.Drawing.Size(67, 21);
+			this.cbOrderBy.TabIndex = 169;
+			// 
+			// cbGhost
+			// 
+			this.cbGhost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.cbGhost.AutoSize = true;
+			this.cbGhost.Checked = true;
+			this.cbGhost.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.cbGhost.Location = new System.Drawing.Point(192, 67);
+			this.cbGhost.Name = "cbGhost";
+			this.cbGhost.Size = new System.Drawing.Size(54, 17);
+			this.cbGhost.TabIndex = 170;
+			this.cbGhost.Text = "Ghost";
+			// 
+			// Loaders
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(271, 367);
+			this.Controls.Add(this.cbGhost);
+			this.Controls.Add(this.btnSave);
+			this.Controls.Add(this.btnGrab);
+			this.Controls.Add(this.cbOrderBy);
+			this.Controls.Add(this.numTQuests);
+			this.Controls.Add(this.btnForceAccept);
+			this.Controls.Add(this.treeGrabbed);
+			this.Controls.Add(this.cbGrab);
+			this.Controls.Add(this.btnLoad);
+			this.Controls.Add(this.cbLoad);
+			this.Controls.Add(this.btnSearchGrab);
+			this.Controls.Add(this.txtLoaders);
+			this.Controls.Add(this.txtSearchGrab);
+			this.Icon = global::Properties.Resources.GrimoireIcon;
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
+			this.Name = "Loaders";
+			this.Text = "Loaders and grabbers";
+			this.TopMost = true;
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Loaders_FormClosing);
+			this.Load += new System.EventHandler(this.Loaders_Load);
+			((System.ComponentModel.ISupportInitialize)(this.numTQuests)).EndInit();
+			this.ResumeLayout(false);
+			this.PerformLayout();
 
         }
 
