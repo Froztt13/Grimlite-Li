@@ -2,38 +2,46 @@ name: Build Grimoire
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, main, master-dev ]
+  pull_request:
+    branches: [ master, main ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
     - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1.1
+      uses: microsoft/setup-msbuild@v2
 
     - name: Setup NuGet
-      uses: NuGet/setup-nuget@v1.1.1
+      uses: NuGet/setup-nuget@v2
 
     - name: Restore NuGet packages
       run: nuget restore "Project Grimlite.sln"
 
     - name: Build solution
-      run: msbuild "Project Grimlite.sln" /p:Configuration=Release /p:TargetFrameworkVersion=v4.8
+      run: msbuild "Project Grimlite.sln" /p:Configuration=Release /p:Platform="Any CPU" /p:TargetFrameworkVersion=v4.8 /m
 
     - name: Prepare files for upload
+      shell: cmd
       run: |
         mkdir artifact
-        copy bin\Release\Grimoire.exe artifact\
-        copy bin\Release\ClientConfig.cfg artifact\
-        copy bin\Release\config.cfg artifact\
-        xcopy /E /I bin\Release\Loader artifact\Loader
-        xcopy /E /I bin\Release\Resources artifact\Resources
-        xcopy /E /I resources\Bots artifact\Bots
-        xcopy /E /I resources\Notes artifact\Notes
-        xcopy /E /I resources\Plugins artifact\Plugins
+        copy /y bin\Release\Grimoire.exe artifact\
+        if exist bin\Release\Grimoire.exe.config copy /y bin\Release\Grimoire.exe.config artifact\
+        if exist bin\Release\ClientConfig.cfg copy /y bin\Release\ClientConfig.cfg artifact\
+        if exist bin\Release\config.cfg copy /y bin\Release\config.cfg artifact\
+        if exist bin\Release\CharSelect.cfg copy /y bin\Release\CharSelect.cfg artifact\
+        if exist bin\Release\hotkeys.json copy /y bin\Release\hotkeys.json artifact\
+        if exist bin\Release\Loader xcopy /E /I /Y bin\Release\Loader artifact\Loader
+        if exist bin\Release\Resources xcopy /E /I /Y bin\Release\Resources artifact\Resources
+        if exist Resources\Bots xcopy /E /I /Y Resources\Bots artifact\Bots
+        if exist Resources\Notes xcopy /E /I /Y Resources\Notes artifact\Notes
+        if exist Resources\Plugins xcopy /E /I /Y Resources\Plugins artifact\Plugins
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
